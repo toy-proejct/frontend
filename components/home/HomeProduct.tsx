@@ -2,7 +2,7 @@ import Link from "next/link"
 import React from "react"
 import styled from "styled-components"
 import ProductList from "../common/ProductList"
-import ProductData from "./productDummy"
+import ProductData from "./data/productDummy"
 
 export default function HomeProduct() {
   return (

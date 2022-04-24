@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import GongbangList from "../common/GongbangList"
-import gongbangData from "./gongbangDummy"
+import gongbangData from "./data/gongbangDummy"
 import Link from "next/link"
 
 export default function HomeGongbang() {

@@ -40,6 +40,4 @@ const gongbangData = [
   },
 ]
 
-// number, kakaoId 노필수
-
 export default gongbangData

@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
-import test3 from "../../public/statics/main/test3.png"
 
 import GongbangType from "../../src/types/gongbangType"
 import Link from "next/link"

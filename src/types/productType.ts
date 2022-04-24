@@ -8,5 +8,6 @@ export type ProductType = {
     purchasedTime: string
     createdAt: string
     image: string
+    likedAt: number
   }
 }

@@ -3,9 +3,9 @@ import styled from "styled-components"
 import { ProductType } from "../..//src/types/productType"
 import Link from "next/link"
 import Image from "next/image"
-import productExample from "../../public/statics/productExample.jpg"
 
 // 그럼 4.1일이랑 3.31이랑 비교하면 1달로 나옴
+// minute 순서로 진행해야 될 듯
 const handleCreateAt = (createdAt: string) => {
   const today = new Date()
   const createdDay = new Date(createdAt)
@@ -21,6 +21,7 @@ const handleCreateAt = (createdAt: string) => {
   const dateToday = today.getDate()
   const dateCreatedDay = createdDay.getDate()
   const notSameDay = dateToday > dateCreatedDay
+  const calculatedWeek = Math.floor((dateToday - dateCreatedDay) / 7)
 
   const hourToday = today.getHours()
   const hourCreatedDay = createdDay.getHours()
@@ -38,6 +39,9 @@ const handleCreateAt = (createdAt: string) => {
   }
 
   if (notSameDay) {
+    if (calculatedWeek) {
+      return `${calculatedWeek}주 전`
+    }
     return `${dateToday - dateCreatedDay}일 전`
   }
 
@@ -49,14 +53,14 @@ const handleCreateAt = (createdAt: string) => {
 }
 
 export default function ProductList({ product }: ProductType) {
-  const { title, cost, image } = product
+  const { title, cost, image, likedAt } = product
   const createdAt = handleCreateAt(product.createdAt)
   return (
     <StyledListWrapper>
       <Link href="#">
         <StyledListLink>
           <StyledImageWrapper>
-            <Image src={productExample} width={260} height={150} style={{ borderRadius: 4 }} />
+            <Image src={image} layout="fill" objectFit="fill" style={{ borderRadius: 4 }} />
           </StyledImageWrapper>
           <div>
             <StyledListTitle>{title}</StyledListTitle>
@@ -66,7 +70,7 @@ export default function ProductList({ product }: ProductType) {
                 <StyledCreatedAt>{createdAt}</StyledCreatedAt>
               </StyledProductCostWrapper>
               <StyledProductHeartWrapper>
-                <p>찜 15</p>
+                <p>💖 {likedAt}</p>
               </StyledProductHeartWrapper>
             </StyledProductDetailWrapper>
           </div>
@@ -86,14 +90,15 @@ const StyledImageWrapper = styled.div`
   width: 100%;
   height: 150px;
   border-radius: 4px;
+  position: relative;
   ${StyledListLink}:hover & {
     filter: brightness(0.7);
   }
 `
 
 const StyledListTitle = styled.p`
-  font-size: 1.1rem;
-  padding: 0.3rem 0;
+  font-size: 1rem;
+  padding-top: 0.3rem;
   width: 250px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -110,12 +115,14 @@ const StyledListWrapper = styled.li`
   padding: 0.5rem 0;
 `
 
-const StyledProductCostWrapper = styled.div``
+const StyledProductCostWrapper = styled.div`
+  font-size: 0.9rem;
+`
 const StyledProductHeartWrapper = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 `
 const StyledProductDetailWrapper = styled.div`
   display: flex;
@@ -123,7 +130,6 @@ const StyledProductDetailWrapper = styled.div`
 `
 
 const StyledCreatedAt = styled.p`
-  font-size: 1rem;
   color: #9c9c9c;
   padding-top: 0.1rem;
 `

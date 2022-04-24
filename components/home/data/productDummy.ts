@@ -8,7 +8,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-20 11:39:00",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 15,
   },
   {
     boardId: 1,
@@ -19,7 +20,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-20 12:54:00",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 2,
@@ -30,7 +32,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-20 17:33:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 3,
@@ -41,7 +44,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-21 11:36:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 4,
@@ -52,7 +56,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-19 17:33:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 5,
@@ -63,7 +68,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-19 17:33:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 6,
@@ -74,7 +80,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-19 17:33:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
   {
     boardId: 7,
@@ -85,7 +92,8 @@ const ProductData = [
       "저번에 선물받은 키보드입니다. 구매한 지는 1년지났지만 실사용은 한달정도 되는 것 같습니다",
     purchasedTime: "2022-1-1",
     createdAt: "2022-04-15 17:33:20",
-    image: "",
+    image: "/statics/productExample.jpg",
+    likedAt: 5,
   },
 ]
 

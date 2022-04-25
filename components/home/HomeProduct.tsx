@@ -14,9 +14,11 @@ export default function HomeProduct() {
         </Link>
       </StyledTitleWrapper>
       <StyledContentWrapper>
-        {ProductData.map((product) => (
-          <ProductList product={product} key={product.boardId} />
-        ))}
+        {ProductData.map((product, idx) => {
+          if (idx < 8) {
+            return <ProductList product={product} key={product.boardId} />
+          }
+        })}
       </StyledContentWrapper>
     </StyledContainer>
   )

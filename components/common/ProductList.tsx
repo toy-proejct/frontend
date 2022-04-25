@@ -3,53 +3,39 @@ import styled from "styled-components"
 import { ProductType } from "../..//src/types/productType"
 import Link from "next/link"
 import Image from "next/image"
+import dayjs from "dayjs"
 
-// 그럼 4.1일이랑 3.31이랑 비교하면 1달로 나옴
-// minute 순서로 진행해야 될 듯
 const handleCreateAt = (createdAt: string) => {
-  const today = new Date()
-  const createdDay = new Date(createdAt)
+  dayjs().format()
+  const today = dayjs()
 
-  const yearToday = today.getFullYear()
-  const yearCreatedDay = createdDay.getFullYear()
-  const notSameYear = yearToday > yearCreatedDay
+  const diffYear = today.diff(createdAt, "year")
+  const diffMonth = today.diff(createdAt, "month")
+  const diffWeek = today.diff(createdAt, "week")
+  const diffDay = today.diff(createdAt, "day")
+  const diffHour = today.diff(createdAt, "hour")
+  const diffMinute = today.diff(createdAt, "minute")
+  const diffSecond = today.diff(createdAt, "second")
 
-  const monthToday = today.getMonth()
-  const monthCreatedDay = createdDay.getMonth()
-  const notSameMonth = monthToday > monthCreatedDay
-
-  const dateToday = today.getDate()
-  const dateCreatedDay = createdDay.getDate()
-  const notSameDay = dateToday > dateCreatedDay
-  const calculatedWeek = Math.floor((dateToday - dateCreatedDay) / 7)
-
-  const hourToday = today.getHours()
-  const hourCreatedDay = createdDay.getHours()
-  const notSameHour = hourToday > hourCreatedDay
-
-  const minuteToday = today.getMinutes()
-  const minuteCreatedDay = createdDay.getMinutes()
-
-  if (notSameYear) {
-    return `${yearToday - yearCreatedDay}년 전`
+  if (diffYear > 0) {
+    return `${diffYear}년 전`
   }
-
-  if (notSameMonth) {
-    return `${monthToday - monthCreatedDay}달 전`
+  if (diffMonth > 0) {
+    return `${diffMonth}달 전`
   }
-
-  if (notSameDay) {
-    if (calculatedWeek) {
-      return `${calculatedWeek}주 전`
-    }
-    return `${dateToday - dateCreatedDay}일 전`
+  if (diffWeek > 0) {
+    return `${diffWeek}주 전`
   }
-
-  if (notSameHour) {
-    return `${hourToday - hourCreatedDay}시간 전`
+  if (diffDay > 0) {
+    return `${diffDay}일 전`
   }
-
-  return `${minuteToday - minuteCreatedDay}분 전`
+  if (diffHour > 0) {
+    return `${diffHour}시간 전`
+  }
+  if (diffMinute > 0) {
+    return `${diffMinute}분 전`
+  }
+  return `${diffSecond}초 전`
 }
 
 export default function ProductList({ product }: ProductType) {

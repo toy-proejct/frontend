@@ -14,9 +14,11 @@ export default function HomeGongbang() {
         </Link>
       </StyledTitleWrapper>
       <StyledGongBangWrapper>
-        {gongbangData.map((gongbang) => (
-          <GongbangList gongbang={gongbang} key={gongbang.id} />
-        ))}
+        {gongbangData.map((gongbang, idx) => {
+          if (idx < 4) {
+            return <GongbangList gongbang={gongbang} key={gongbang.id} />
+          }
+        })}
       </StyledGongBangWrapper>
     </StyledGongbangContainer>
   )

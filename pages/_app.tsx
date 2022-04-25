@@ -6,7 +6,7 @@ import GlobalStyle from "../src/styles/GlobalStyle"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { ThemeProvider } from "styled-components"
 import theme from "../src/styles/theme"
-import Layout from "../components/common/Layout"
+import Layout from "../src/components/common/Layout"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClientRef = useRef<QueryClient>()

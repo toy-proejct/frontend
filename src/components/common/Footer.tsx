@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import footerLogo from "../../public/statics/footer/footerLogo.png"
+import footerLogo from "/statics/footer/footerLogo.png"
 import styled from "styled-components"
 import Link from "next/link"
 
@@ -15,7 +15,7 @@ export default function Footer() {
       <div>
         <Link href="/">
           <a>
-            <Image src={footerLogo} width={650}></Image>
+            <Image src="/statics/footer/footerLogo.png" width={650} height={65}></Image>
           </a>
         </Link>
       </div>

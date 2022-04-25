@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { ProductType } from "../..//src/types/productType"
+import { ProductType } from "../../types/productType"
 import Link from "next/link"
 import Image from "next/image"
 import dayjs from "dayjs"

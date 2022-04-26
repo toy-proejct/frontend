@@ -2,21 +2,23 @@ import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import Link from "next/link"
+import ClassListType from "../../types/classListType"
 
-export default function ClassList() {
+export default function ClassList({ classList }: ClassListType) {
+  const { image, title, teacher, rating, likedAt, view, price } = classList
   return (
     <StyledClassList>
       <Link href="#">
         <a>
           <StyledImageWrapper>
-            <Image src="/statics/main/KimGongbang.png" layout="fill" objectFit="scale-down" />
+            <Image src={image} layout="fill" objectFit="scale-down" />
           </StyledImageWrapper>
           <StyledTextWrapper>
-            <h3>커스텀 키보드 기초 강의</h3>
-            <p className="classInfo classTitle">김김공방</p>
+            <h3>{title}</h3>
+            <p className="classInfo classTeacher">{teacher}</p>
             <p className="classInfo">⭐⭐⭐⭐⭐(50명)</p>
-            <p className="classInfo">💖 15</p>
-            <p className="classPrice">150.000원</p>
+            <p className="classInfo">💖 {likedAt}</p>
+            <p className="classPrice">{price.toLocaleString()}원</p>
           </StyledTextWrapper>
         </a>
       </Link>
@@ -46,7 +48,7 @@ const StyledTextWrapper = styled.div`
   .classInfo {
     font-size: 0.8rem;
   }
-  .classTitle {
+  .classTeacher {
     color: #888888;
     padding-top: 0.2rem;
   }

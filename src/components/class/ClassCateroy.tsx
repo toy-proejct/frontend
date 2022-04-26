@@ -1,18 +1,16 @@
 import React from "react"
 import styled from "styled-components"
 import ClassList from "./ClassList"
+import classData from "./data/classListDummy"
 
 export default function ClassCateroy() {
   return (
     <StyledClassWrapper>
       <h2>커스텀 키보드 클래스 목록</h2>
       <StyledClassListWrapper>
-        <ClassList />
-        <ClassList />
-        <ClassList />
-        <ClassList />
-        <ClassList />
-        <ClassList />
+        {classData.map((classList) => (
+          <ClassList classList={classList} />
+        ))}
       </StyledClassListWrapper>
     </StyledClassWrapper>
   )

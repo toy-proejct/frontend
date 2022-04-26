@@ -74,7 +74,7 @@ const StyledListLink = styled.a`
 const StyledImageWrapper = styled.div`
   background: grey;
   width: 100%;
-  height: 150px;
+  height: 250px;
   border-radius: 4px;
   position: relative;
   ${StyledListLink}:hover & {
@@ -98,7 +98,7 @@ const StyledListTitle = styled.p`
 
 const StyledListWrapper = styled.li`
   width: 250px;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 `
 
 const StyledProductCostWrapper = styled.div`

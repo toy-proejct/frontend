@@ -9,7 +9,7 @@ export default function ClassCateroy() {
       <h2>커스텀 키보드 클래스 목록</h2>
       <StyledClassListWrapper>
         {classData.map((classList) => (
-          <ClassList classList={classList} />
+          <ClassList classList={classList} key={classList.id} />
         ))}
       </StyledClassListWrapper>
     </StyledClassWrapper>

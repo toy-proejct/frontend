@@ -38,7 +38,7 @@ const StyledClassList = styled.li`
   border-radius: 6px;
   margin: 2rem 0;
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(0.9);
   }
 `
 const StyledTextWrapper = styled.div`

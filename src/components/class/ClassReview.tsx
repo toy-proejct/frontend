@@ -1,22 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import ClassReivewList from "./ClassReivewList"
 import Image from "next/image"
 import bottomArrow from "../../../public/statics/main/bottomArrow.jpg"
+import reviewData from "./data/classReviewDummy"
 
 export default function ClassReview() {
+  const [currentReviewPage, setCurrentReviewPage] = useState(3)
+  const onClickMoreBtn = () => {
+    setCurrentReviewPage(currentReviewPage + 3)
+  }
   return (
     <StyledClassContainer>
       <h2>수강생 리뷰</h2>
       <StyledReviewWrapper>
-        <ClassReivewList />
-        <ClassReivewList />
-        <ClassReivewList />
+        {reviewData.map((review, idx) => {
+          if (idx < currentReviewPage) {
+            return <ClassReivewList review={review} key={review.id} />
+          }
+        })}
       </StyledReviewWrapper>
       <StyledReviewMoreWrapper>
-        <StyledMoreBtn>
+        <StyledMoreBtn onClick={onClickMoreBtn}>
           <Image src={bottomArrow} width={25} height={25} />
-          리뷰 더보기
+          {currentReviewPage > reviewData.length ? "리뷰가 존재하지 않습니다" : "리뷰 더보기"}
         </StyledMoreBtn>
       </StyledReviewMoreWrapper>
     </StyledClassContainer>
@@ -26,6 +33,7 @@ export default function ClassReview() {
 const StyledReviewWrapper = styled.ul`
   padding: 2rem 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 `
 

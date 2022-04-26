@@ -1,20 +1,18 @@
 import React from "react"
 import styled from "styled-components"
+import classReviewType from "../../types/classReviewType"
 
-export default function ClassReivewList() {
+export default function ClassReivewList({ review }: classReviewType) {
+  const { teacher, title, detail, userName } = review
+  const viewedAt = review.viewedAt.replaceAll("-", ".")
   return (
     <StyledReivewList>
-      <h3>김김공방</h3>
-      <p className="reviewTitle">커스텀 키보드 기초 강의</p>
-      <p className="reviewDetail">
-        이번에 수강을 했는데 설명도 친절하고 너무 좋았습니다 이번에 수강을 했는데 설명도 친절하고
-        너무 좋았습니다.이번에 수강을 했는데 설명도 친절하고 너무 좋았습니다.이번에 수강을 했는데
-        설명도 친절하고 너무 좋았습니다.이번에 수강을 했는데 설명도 친절하고 너무 좋았습니다.이번에
-        수강을 했는데 설명도 친절하고 너무 좋았습니다
-      </p>
+      <h3>{teacher}</h3>
+      <p className="reviewTitle">{title}</p>
+      <p className="reviewDetail">{detail}</p>
       <div className="reviewWrapper">
-        <p>혜빈</p>
-        <p>2022.04.25</p>
+        <p>{userName}</p>
+        <p>{viewedAt}</p>
       </div>
     </StyledReivewList>
   )
@@ -25,6 +23,7 @@ const StyledReivewList = styled.li`
   border-radius: 5px;
   width: 29%;
   padding: 2rem 1rem;
+  margin: 1rem 0;
   .reviewTitle {
     font-size: 0.9rem;
     color: #797979;

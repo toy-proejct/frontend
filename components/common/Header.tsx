@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import React from "react"
-import logo from "../public/statics/VB.svg"
+import Logo from "../../public/statics/header/VB.svg"
+import Image from "next/image"
 
 const HeaderContainer = styled.div`
   border-bottom: 1px solid #ededed;
@@ -55,7 +56,7 @@ const Header: React.FC = () => {
       <div className="nav">
         <div className="nav-left">
           <div className="logo">
-            <img src="/statics/header/VB.svg" alt="로고" />
+            <Image src={Logo} alt="로고" />
           </div>
           <a style={{ color: "#35c5f0" }}>커뮤니티</a>
           <a>우리동네공방</a>

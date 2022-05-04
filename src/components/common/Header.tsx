@@ -57,7 +57,11 @@ const Header: React.FC = () => {
       <div className="nav">
         <div className="nav-left">
           <div className="logo">
-            <Image src={Logo} alt="로고" />
+            <Link href="/">
+              <a>
+                <Image src={Logo} alt="로고" />
+              </a>
+            </Link>
           </div>
           <a style={{ color: "#35c5f0" }}>커뮤니티</a>
           <a>우리동네공방</a>

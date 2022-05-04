@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import React from "react"
-import Logo from "../../public/statics/header/VB.svg"
+import Logo from "/public/statics/header/VB.svg"
 import Image from "next/image"
 import Link from "next/link"
 

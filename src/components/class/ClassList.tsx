@@ -6,6 +6,10 @@ import ClassListType from "../../types/classListType"
 
 export default function ClassList({ classList }: ClassListType) {
   const { image, title, teacher, rating, likedAt, view, price } = classList
+  const converRatingToStar = Array.from({ length: Math.round(rating) }, () => "⭐")
+    .toString()
+    .replaceAll(/,/g, "")
+
   return (
     <StyledClassList>
       <Link href="#">
@@ -16,9 +20,12 @@ export default function ClassList({ classList }: ClassListType) {
           <StyledTextWrapper>
             <h3>{title}</h3>
             <p className="classInfo classTeacher">{teacher}</p>
-            <p className="classInfo">⭐⭐⭐⭐⭐(50명)</p>
+            <p className="classInfo">
+              {converRatingToStar}({rating}점)
+            </p>
             <p className="classInfo">💖 {likedAt}</p>
-            <p className="classPrice">{price.toLocaleString()}원</p>
+            <span className="classPrice">{price.toLocaleString()}원</span>
+            <span className="classViewCount">{view}명이 등록했습니다.</span>
           </StyledTextWrapper>
         </a>
       </Link>
@@ -44,7 +51,6 @@ const StyledClassList = styled.li`
 const StyledTextWrapper = styled.div`
   padding: 0.7rem;
   padding-left: 0;
-  border-top: 1px solid #bebebe;
   .classInfo {
     font-size: 0.8rem;
   }
@@ -54,5 +60,10 @@ const StyledTextWrapper = styled.div`
   }
   .classPrice {
     padding-top: 0.2rem;
+  }
+  .classViewCount {
+    font-size: 0.8rem;
+    color: #888888;
+    padding-left: 0.5rem;
   }
 `

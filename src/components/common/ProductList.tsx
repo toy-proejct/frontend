@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { ProductType } from "../..//src/types/productType"
+import { ProductType } from "../../types/productType"
 import Link from "next/link"
 import Image from "next/image"
 import dayjs from "dayjs"
@@ -98,7 +98,7 @@ const StyledListTitle = styled.p`
 
 const StyledListWrapper = styled.li`
   width: 250px;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 `
 
 const StyledProductCostWrapper = styled.div`

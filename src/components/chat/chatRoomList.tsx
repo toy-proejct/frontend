@@ -4,6 +4,12 @@ import styled from "styled-components"
 import profile from "/public/statics/chat/profileExample.png"
 import Image from "next/image"
 
+type Content = {
+  text: string
+  chatId: number
+  time: string
+}
+
 type ChatRoomList = {
   chatRoom: {
     id: number
@@ -12,6 +18,7 @@ type ChatRoomList = {
     lastChat: string
     lastChatTime: string
     notReadCount: number
+    content: Content[]
   }
   onClickChatRoomList: (id: number) => void
 }

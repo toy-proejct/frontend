@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
 
-import GongbangType from "../../src/types/gongbangType"
+import GongbangType from "../../types/gongbangType"
 import Link from "next/link"
 
 export default function GongbangList({ gongbang }: GongbangType) {

@@ -2,11 +2,8 @@ import Head from "next/head"
 import Image from "next/image"
 import styled from "styled-components"
 import main from "../public/statics/main/main.png"
-import Footer from "../components/common/Footer"
-import HomeProduct from "../components/home/HomeProduct"
-import Header from "../components/common/Header"
-import HomeGongbang from "../components/home/HomeGongbang"
-
+import HomeProduct from "../src/components/home/HomeProduct"
+import HomeGongbang from "../src/components/home/HomeGongbang"
 export default function Home() {
   return (
     <div>

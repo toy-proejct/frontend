@@ -4,7 +4,7 @@ import Footer from "./Footer"
 import Header from "./Header"
 
 export default function Layout({ children }: { children: ReactElement }) {
-  const [isModal,setIsModal] = useState(false);
+  const [isModal, setIsModal] = useState(false)
   return (
     <>
       {/* <Header /> */}

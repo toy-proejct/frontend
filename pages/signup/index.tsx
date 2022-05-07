@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import { useState } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 import CheckGray from '../../public/statics/login/check.svg';
 import CheckRed from '../../public/statics/login/red-check.svg';
 import CircleCheckGray from '../../public/statics/login/circle-check.svg';
 import CircleCheckRed from '../../public/statics/login/circle-check-red.svg';
 import ArrowBottom from '../../public/statics/login/arrow-bottom.svg';
-import Image from "next/image";
 
 const SignupContainer = styled.div`
     display: flex;
@@ -227,7 +227,7 @@ const SignupContainer = styled.div`
 const Signup: NextPage = () => {
     const [checkAll,setCheckAll] = useState(false);
     const [checkboxList,setCheckboxList] = useState([
-        {checked:false, text:'번개장터 이용약관(필수)'},
+        {checked:false, text:'VR 이용약관(필수)'},
         {checked:false, text:'개인정보 수집 이용 동의(필수)'},
         {checked:false, text:'휴대폰 본인확인서비스(필수)'},
         {checked:false, text:'개인정보 수집 이용 동의(선택)'},

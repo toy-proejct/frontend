@@ -7,9 +7,9 @@ export default function Layout({ children }: { children: ReactElement }) {
   const [isModal, setIsModal] = useState(false)
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {children}
-      <Footer />
+      {/* <Footer /> */}
       {isModal && <LoginModal />}
     </>
   )

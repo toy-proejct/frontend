@@ -62,6 +62,7 @@ const Header: React.FC = () => {
                 <Image src={Logo} alt="로고" />
               </a>
             </Link>
+            <Image src={Logo} alt="로고" />
           </div>
           <a style={{ color: "#35c5f0" }}>커뮤니티</a>
           <a>우리동네공방</a>

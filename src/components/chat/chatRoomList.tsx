@@ -137,7 +137,7 @@ const StyledChatRoomInfoWrapper = styled.div`
     color: grey;
   }
   .chatRoomLastChatTime {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: grey;
     padding-left: 0.3rem;
   }

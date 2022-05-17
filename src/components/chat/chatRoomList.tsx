@@ -1,31 +1,18 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-
 import profile from "/public/statics/chat/profileExample.png"
+import chatType from "../../types/chatType"
 import Image from "next/image"
 
-type Content = {
-  text: string
-  chatId: number
-  time: string
-}
-
 type ChatRoomList = {
-  chatRoom: {
-    id: number
-    active: boolean
-    title: string
-    lastChat: string
-    lastChatTime: string
-    notReadCount: number
-    content: Content[]
-  }
+  chat: chatType
+  active: boolean
   onClickChatRoomList: (id: number) => void
 }
 
-export default function ChatRoomList({ chatRoom, onClickChatRoomList }: ChatRoomList) {
+export default function ChatRoomList({ chat, onClickChatRoomList, active }: ChatRoomList) {
   const [isOpendMoreInfo, setIsOpendMoreInfo] = useState(false)
-  const { active, title, lastChat, lastChatTime, notReadCount, id } = chatRoom
+  const { title, lastChat, modifiedAt, notReadCount, id } = chat
   const handleMoreInfo = (event: React.MouseEvent) => {
     if (event.type === "mouseleave") {
       setIsOpendMoreInfo(false)
@@ -46,7 +33,7 @@ export default function ChatRoomList({ chatRoom, onClickChatRoomList }: ChatRoom
       <StyledChatRoomInfoWrapper>
         <p className="chatRoomInfoTitle">{title}</p>
         <span className="chatRoomLastChat">{lastChat}</span>
-        <span className="chatRoomLastChatTime">{lastChatTime}</span>
+        <span className="chatRoomModifiedAt">{modifiedAt}</span>
       </StyledChatRoomInfoWrapper>
       <StyledChatRoomMoreDiv onClick={handleMoreInfo} onMouseLeave={handleMoreInfo}>
         <p>…</p>
@@ -57,9 +44,9 @@ export default function ChatRoomList({ chatRoom, onClickChatRoomList }: ChatRoom
           <li>대화방 알림 끄기</li>
         </StyledChatRoomMoreInfo>
       </StyledChatRoomMoreDiv>
-      <StyledChatRoomNotReadingText>
-        {notReadCount === 0 ? "✔" : notReadCount}
-      </StyledChatRoomNotReadingText>
+      {notReadCount !== 0 && (
+        <StyledChatRoomNotReadingText>{notReadCount}</StyledChatRoomNotReadingText>
+      )}
     </StyledChatRoomList>
   )
 }
@@ -136,7 +123,7 @@ const StyledChatRoomInfoWrapper = styled.div`
     font-size: 0.7rem;
     color: grey;
   }
-  .chatRoomLastChatTime {
+  .chatRoomModifiedAt {
     font-size: 0.7rem;
     color: grey;
     padding-left: 0.3rem;

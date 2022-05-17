@@ -1,61 +1,28 @@
 import Image from "next/image"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import ChatRoomList from "../../src/components/chat/chatRoomList"
+import ChatRoomList from "../../src/components/chat/ChatRoomList"
 import exitIcon from "/public/statics/chat/exitIcon.png"
 import userInfoIcon from "/public/statics/chat/userInfoIcon.png"
 import imageIcon from "/public/statics/chat/imageIcon.png"
+import ChatContainer from "../../src/components/chat/ChatContainer"
+import chatData from "../../src/components/chat/data/chatDummy"
+import chatType from "../../src/types/chatType"
+
+// chat erd가 아직 확실하지 않은 것 같아서 UI에 보이는 것들만 기본값으로 설정
 
 export default function Chat() {
-  const [chatRoom, setChatRoom] = useState([
-    {
-      id: 0,
-      active: true,
-      title: "판매글 제목을 보여줍니다.",
-      lastChat: "라스트채팅을 보여줍니다.",
-      lastChatTime: "2분 전",
-      content: [
-        { text: "반가워요", chatId: 0, time: "20222년05월05일 20:18" },
-        { text: "테스트합니다~~~", chatId: 1, time: "20222년05월05일 20:18" },
-        {
-          text: "테스트합니다@@@@@@@@@@@@@@@@@@@@@@@@",
-          chatId: 2,
-          time: "20222년05월05일 20:18",
-        },
-      ],
-      notReadCount: 0,
-    },
-    {
-      id: 1,
-      active: false,
-      title: "황홍공방입니다.",
-      lastChat: "테스트합니다.",
-      lastChatTime: "2일 전",
-      content: [
-        { text: "반가워요", chatId: 0, time: "20222년05월05일 20:18" },
-        { text: "테스트합니다~~~", chatId: 1, time: "20222년05월05일 20:18" },
-        { text: "테스트합니다@@@@@@@@@@@@@@@@@@@@@@@@", chatId: 2, time: "20222년05월05일 20:18" },
-      ],
-      notReadCount: 2,
-    },
-    {
-      id: 2,
-      active: false,
-      title: "청축판매합니다.",
-      lastChat: "굿입니다.",
-      content: [
-        { text: "반가워요", chatId: 0, time: "20222년05월05일 20:18" },
-        { text: "테스트합니다~~~", chatId: 1, time: "20222년05월05일 20:18" },
-        { text: "테스트합니다@@@@@@@@@@@@@@@@@@@@@@@@", chatId: 2, time: "20222년05월05일 20:18" },
-      ],
-      lastChatTime: "2주 전",
-      notReadCount: 5,
-    },
+  const [chatList, setChatList] = useState<chatType[] | null>(null)
+  const [chatActiveList, setChatActiveList] = useState([
+    { chatRoomId: 0, active: true },
+    { chatRoomId: 1, active: false },
+    { chatRoomId: 2, active: false },
   ])
+  const inputTextRef = useRef<HTMLInputElement>(null)
 
   const onClickChatRoomList = (id: number) => {
-    const changedActiveRoomList = chatRoom.map((item) => {
-      if (id === item.id) {
+    const changedChatActiveList = chatActiveList.map((item) => {
+      if (id === item.chatRoomId) {
         return { ...item, active: true }
       }
       if (item.active) {
@@ -63,40 +30,52 @@ export default function Chat() {
       }
       return item
     })
-    setChatRoom(changedActiveRoomList)
+    setChatActiveList(changedChatActiveList)
   }
 
   const onSubmitChatInputForm = (event: React.FormEvent) => {
     event.preventDefault()
-    const submittedChatRoom = chatRoom.map((item) => {
-      if (item.active) {
-        const chatId = item.content.length ? item.content.length + 1 : 0
-        const text = "hello"
-        const time = new Date().toString()
-        item.content.push({ text, chatId, time })
-      }
-      return { ...item }
-    })
-    setChatRoom(submittedChatRoom)
+    const isExistedOnlySpace = /^\s*$/.test(inputTextRef.current!.value)
+    if (inputTextRef.current && !isExistedOnlySpace) {
+      const submittedChatRoom = chatList!.map((item, idx) => {
+        if (chatActiveList[idx].active) {
+          const chatId = item.content[item.content.length - 1].chatId + 1
+          const text = inputTextRef.current!.value
+          const time = new Date().toString()
+          item.content.push({ text, chatId, time })
+        }
+        return { ...item }
+      })
+      inputTextRef.current.value = ""
+      setChatList(submittedChatRoom)
+    }
+    return
   }
+
+  useEffect(() => {
+    setChatList(chatData)
+  }, [])
+
   return (
     <StyledMainContainer>
       <StyledMainWrapper>
         <StyledChatRoomContainer>
           <p className="chatRoomTitle">채팅방</p>
           <StyleChatRoomListWrapper>
-            {chatRoom.map((chatRoom) => (
-              <ChatRoomList
-                chatRoom={chatRoom}
-                key={chatRoom.id}
-                onClickChatRoomList={onClickChatRoomList}
-              />
-            ))}
+            {chatList &&
+              chatList.map((chat, idx) => (
+                <ChatRoomList
+                  chat={chat}
+                  key={chat.id}
+                  active={chatActiveList[idx].active}
+                  onClickChatRoomList={onClickChatRoomList}
+                />
+              ))}
           </StyleChatRoomListWrapper>
         </StyledChatRoomContainer>
         <StyledChatWritePlaceContainer>
           <StyledChatWriteTitleContainer>
-            <p className="chatWritePlaceTitle">번개장터</p>
+            <p className="chatWritePlaceTitle">상대방 아이디</p>
             <div className="chatWritePlaceBtnWrapper">
               <button>
                 <Image src={userInfoIcon} width={22} height={22} />
@@ -107,19 +86,19 @@ export default function Chat() {
             </div>
           </StyledChatWriteTitleContainer>
           <StyledChatOutputContainer>
-            {chatRoom.map((item) => {
-              if (item.active) {
-                return <ChatOutputList key={item.id} />
-              }
-            })}
-            <ChatOutputList />
+            {chatList &&
+              chatList.map((chat, idx) => {
+                if (chatActiveList[idx].active) {
+                  return <ChatContainer key={chat.id} chat={chat} />
+                }
+              })}
           </StyledChatOutputContainer>
           <StyledChatInputForm onSubmit={onSubmitChatInputForm}>
             <label htmlFor="imageInput">
               <Image src={imageIcon} width={27} height={27} />
             </label>
             <input type="file" id="imageInput" accept="image/*" />
-            <input type="text" placeholder="채팅을 입력하세요." />
+            <input type="text" placeholder="채팅을 입력하세요." ref={inputTextRef} />
             <button className="chatWriteBtn">입력</button>
           </StyledChatInputForm>
         </StyledChatWritePlaceContainer>
@@ -128,43 +107,14 @@ export default function Chat() {
   )
 }
 
-function ChatOutputList() {
-  return (
-    <>
-      <StyledChatOutputList>
-        <p>테스트합니다@@@@@@@@@@@@@@@@@@@@@@@@</p>
-        <span className="chatOutputTime">오후 10:32</span>
-      </StyledChatOutputList>
-    </>
-  )
-}
-
-const StyledChatOutputContainer = styled.div`
+const StyledChatOutputContainer = styled.section`
   padding: 1rem;
   display: flex;
   flex-grow: 1;
   flex-direction: column-reverse;
   align-items: flex-start;
+  overflow-y: scroll;
 `
-
-const StyledChatOutputList = styled.div`
-  background: white;
-  position: relative;
-  padding: 0.5rem;
-  max-width: 300px;
-  margin: 0.4rem 0;
-  color: black;
-  border-radius: 7px;
-  background: white;
-  .chatOutputTime {
-    font-size: 0.3rem;
-    position: absolute;
-    right: -50px;
-    color: #c7c1be;
-    bottom: 0;
-  }
-`
-// background: #35c5f0;
 
 const StyledChatInputForm = styled.form`
   background: white;

@@ -16,7 +16,7 @@ export default function ChatContainer({ chat }: ChatContainerType) {
   return (
     <StyledChattingContainer>
       {chat.content.map((message) => (
-        <li className="chatWrapper">
+        <li className="chatWrapper" key={message.chatId}>
           <p className="chatText">{message.text}</p>
           <span className="chatOutputTime">{changeDateToHours(message.time)}</span>
         </li>

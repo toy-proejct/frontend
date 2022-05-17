@@ -11,17 +11,18 @@ import chatType from "../../src/types/chatType"
 
 // chat erd가 아직 확실하지 않은 것 같아서 UI에 보이는 것들만 기본값으로 설정
 
+type chatActiveType = {
+  active: boolean
+  chatRoomId: number
+}
+
 export default function Chat() {
   const [chatList, setChatList] = useState<chatType[] | null>(null)
-  const [chatActiveList, setChatActiveList] = useState([
-    { chatRoomId: 0, active: true },
-    { chatRoomId: 1, active: false },
-    { chatRoomId: 2, active: false },
-  ])
+  const [chatActiveList, setChatActiveList] = useState<chatActiveType[] | null>(null)
   const inputTextRef = useRef<HTMLInputElement>(null)
 
   const onClickChatRoomList = (id: number) => {
-    const changedChatActiveList = chatActiveList.map((item) => {
+    const changedChatActiveList = chatActiveList!.map((item) => {
       if (id === item.chatRoomId) {
         return { ...item, active: true }
       }
@@ -38,7 +39,7 @@ export default function Chat() {
     const isExistedOnlySpace = /^\s*$/.test(inputTextRef.current!.value)
     if (inputTextRef.current && !isExistedOnlySpace) {
       const submittedChatRoom = chatList!.map((item, idx) => {
-        if (chatActiveList[idx].active) {
+        if (chatActiveList && chatActiveList[idx].active) {
           const chatId = item.content[item.content.length - 1].chatId + 1
           const text = inputTextRef.current!.value
           const time = new Date().toString()
@@ -52,8 +53,36 @@ export default function Chat() {
     return
   }
 
+  const onClickExitIcon = () => {
+    if (chatActiveList && confirm("채팅방을 나가면 대화내용이 삭제됩니다.")) {
+      let currentActiveChat: number | null = null
+      chatActiveList.map((item) => {
+        if (item.active) {
+          currentActiveChat = item.chatRoomId
+        }
+      })
+      console.log(currentActiveChat)
+      if (currentActiveChat !== null) {
+        const filterChatList = chatList!.filter((chat) => chat.id !== currentActiveChat)
+        const filterActiveChat = chatActiveList.filter(
+          (activeList) => activeList.chatRoomId !== currentActiveChat,
+        )
+        setChatActiveList(filterActiveChat)
+        setChatList(filterChatList)
+      }
+      if (currentActiveChat === null) {
+        alert("대화내용이 존재하지 않습니다.")
+      }
+    }
+  }
+
   useEffect(() => {
+    const firstChatActiveList: chatActiveType[] = []
+    chatData.forEach((chat) => {
+      firstChatActiveList.push({ chatRoomId: chat.id, active: false })
+    })
     setChatList(chatData)
+    setChatActiveList(firstChatActiveList)
   }, [])
 
   return (
@@ -63,6 +92,7 @@ export default function Chat() {
           <p className="chatRoomTitle">채팅방</p>
           <StyleChatRoomListWrapper>
             {chatList &&
+              chatActiveList &&
               chatList.map((chat, idx) => (
                 <ChatRoomList
                   chat={chat}
@@ -80,13 +110,14 @@ export default function Chat() {
               <button>
                 <Image src={userInfoIcon} width={22} height={22} />
               </button>
-              <button>
+              <button onClick={onClickExitIcon}>
                 <Image src={exitIcon} width={22} height={22} />
               </button>
             </div>
           </StyledChatWriteTitleContainer>
           <StyledChatOutputContainer>
             {chatList &&
+              chatActiveList &&
               chatList.map((chat, idx) => {
                 if (chatActiveList[idx].active) {
                   return <ChatContainer key={chat.id} chat={chat} />

@@ -6,7 +6,7 @@ import HomeProduct from "../src/components/home/HomeProduct"
 import HomeGongbang from "../src/components/home/HomeGongbang"
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Value Board | 커스텀 키보드</title>
         <meta name="description" content="커스텀 키보드 판매, 커뮤니티는 Keyboard Value로!" />
@@ -19,7 +19,7 @@ export default function Home() {
         <HomeProduct />
         <HomeGongbang />
       </StyledMainContainer>
-    </div>
+    </>
   )
 }
 

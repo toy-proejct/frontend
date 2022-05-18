@@ -5,6 +5,10 @@ import Link from "next/link"
 import Image from "next/image"
 import dayjs from "dayjs"
 
+type ProductListType = {
+  product: ProductType
+}
+
 const handleCreateAt = (createdAt: string) => {
   dayjs().format()
   const today = dayjs()
@@ -38,7 +42,7 @@ const handleCreateAt = (createdAt: string) => {
   return `${diffSecond}초 전`
 }
 
-export default function ProductList({ product }: ProductType) {
+export default function ProductList({ product }: ProductListType) {
   const { title, cost, image, likedAt } = product
   const createdAt = handleCreateAt(product.createdAt)
   return (

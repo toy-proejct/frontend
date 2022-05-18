@@ -1,11 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
-
 import GongbangType from "../../types/gongbangType"
 import Link from "next/link"
 
-export default function GongbangList({ gongbang }: GongbangType) {
+type GongbangListType = {
+  gongbang: GongbangType
+}
+
+export default function GongbangList({ gongbang }: GongbangListType) {
   const { name, detail, mail, kakaoId, number, link, image } = gongbang
   return (
     <StyledGongBangList>

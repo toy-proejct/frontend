@@ -1,14 +1,12 @@
 type ClassListType = {
-  classList: {
-    id: number
-    image: string
-    title: string
-    teacher: string
-    rating: number
-    likedAt: number
-    view: number
-    price: number
-  }
+  id: number
+  image: string
+  title: string
+  teacher: string
+  rating: number
+  likedAt: number
+  view: number
+  price: number
 }
 
 export default ClassListType

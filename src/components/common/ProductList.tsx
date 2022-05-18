@@ -81,8 +81,12 @@ const StyledImageWrapper = styled.div`
   height: 150px;
   border-radius: 4px;
   position: relative;
-  ${StyledListLink}:hover & {
-    filter: brightness(0.7);
+  img {
+    transform: scale(1);
+    transition: 0.3s;
+    ${StyledListLink}:hover & {
+      transform: scale(1.05);
+    }
   }
 `
 

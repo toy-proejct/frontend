@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import React from "react"
-import Logo from "/public/statics/header/VB.svg"
-import KakaoLogo from "/public/statics/login/kakao-logo.png"
-import NaverLogo from "/public/statics/login/naver-logo.png"
-import GithubLogo from "/public/statics/login/github-logo.png"
-import CancelBtn from "/public/statics/login/cancel-btn.png"
+import Logo from "public/statics/header/VB.svg"
+import KakaoLogo from "public/statics/login/kakao-logo.png"
+import NaverLogo from "public/statics/login/naver-logo.png"
+import GithubLogo from "public/statics/login/github-logo.png"
+import CancelBtn from "public/statics/login/cancel-btn.png"
 import Image from "next/image"
 
 const LoginModalContainer = styled.div`

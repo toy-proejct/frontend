@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import ClassReivewList from "./ClassReivewList"
 import Image from "next/image"
-import bottomArrow from "../../../public/statics/main/bottomArrow.jpg"
+import bottomArrow from "public/statics/main/bottomArrow.jpg"
 import reviewData from "./data/classReviewDummy"
 
 export default function ClassReview() {

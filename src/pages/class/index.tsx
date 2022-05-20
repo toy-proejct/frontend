@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef } from "react"
 import styled from "styled-components"
-import ClassCateroy from "../../src/components/class/ClassCateroy"
-import ClassReview from "../../src/components/class/ClassReview"
+import ClassCateroy from "src/components/class/ClassCateroy"
+import ClassReview from "src/components/class/ClassReview"
 
 export default function Class() {
   const refMain = useRef<HTMLDivElement>(null)

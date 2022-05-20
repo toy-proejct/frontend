@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import Link from "next/link"
-import ClassListType from "../../types/classListType"
+import ClassListType from "src/types/classListType"
 
 export default function ClassList({ classList }: ClassListType) {
   const { image, title, teacher, rating, likedAt, view, price } = classList

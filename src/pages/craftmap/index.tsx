@@ -70,7 +70,13 @@ const CraftMapContainer = styled.div`
 `
 
 const CraftMap: NextPage = () => {
-  const [myLocation, setMyLocation] = useState<{ latitude: number; longitude: number } | string>("")
+  const [myLocation, setMyLocation] = useState<
+    | {
+        latitude: number
+        longitude: number
+      }
+    | string
+  >("")
   const [shopList, setShopList] = useState([
     {
       id: 1,
@@ -147,7 +153,10 @@ const CraftMap: NextPage = () => {
 
     // 위치 추적에 실패 했을때 초기값을 넣어줍니다.
     function error() {
-      setMyLocation({ latitude: 37.4979517, longitude: 127.0276188 })
+      setMyLocation({
+        latitude: 37.4979517,
+        longitude: 127.0276188,
+      })
     }
   }, [])
 
@@ -189,7 +198,7 @@ const CraftMap: NextPage = () => {
         !selectedMarker.current ||
         (selectedMarker.current !== marker && item.name !== undefined)
       ) {
-        if (!!selectedMarker.current) {
+        if (selectedMarker.current) {
           selectedMarker.current.setIcon()
         }
         selectedMarker.current = marker
@@ -239,7 +248,7 @@ const CraftMap: NextPage = () => {
           </ul>
         </div>
       </div>
-      <div id="map"></div>
+      <div id="map" />
     </CraftMapContainer>
   )
 }

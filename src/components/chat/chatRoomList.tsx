@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import profile from "/public/statics/chat/profileExample.png"
-import chatType from "../../types/chatType"
+import profile from "public/statics/chat/profileExample.png"
+import chatType from "src/types/chatType"
 import Image from "next/image"
 
 type ChatRoomList = {

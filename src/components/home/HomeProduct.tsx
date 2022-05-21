@@ -9,7 +9,7 @@ export default function HomeProduct() {
     <StyledContainer>
       <StyledTitleWrapper>
         <h2>최신 상품</h2>
-        <Link href="#">
+        <Link href="/products">
           <StyledTitleLink>전체보기</StyledTitleLink>
         </Link>
       </StyledTitleWrapper>

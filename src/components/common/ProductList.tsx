@@ -47,7 +47,7 @@ export default function ProductList({ product }: ProductListType) {
   const createdAt = handleCreateAt(product.createdAt)
   return (
     <StyledListWrapper>
-      <Link href="#">
+      <Link href={`/products/${product.boardId}`}>
         <StyledListLink>
           <StyledImageWrapper>
             <Image src={image} layout="fill" objectFit="fill" style={{ borderRadius: 4 }} />

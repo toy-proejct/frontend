@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import styled from "styled-components"
-import ProductList from "../../src/components/common/ProductList"
-import ProductData from "../../src/components/home/data/productDummy"
-import { ProductType } from "../../src/types/productType"
-import PageNation from "../../src/components/common/PageNation"
+import ProductList from "../../components/common/ProductList"
+import ProductData from "../../components/home/data/productDummy"
+import { ProductType } from "../../types/productType"
+import PageNation from "../../components/common/PageNation"
 import { useRouter } from "next/router"
-import sortArrItems from "../../src/utils/sortArrItems"
+import sortArrItems from "../../utils/sortArrItems"
 
 export default function Products() {
   const [products, setProducts] = useState<ProductType[]>([])

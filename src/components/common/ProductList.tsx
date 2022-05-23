@@ -105,8 +105,8 @@ const StyledListTitle = styled.p`
 `
 
 const StyledListWrapper = styled.li`
-  width: 250px;
-  padding: 1rem 0;
+  width: 277px;
+  padding: 1rem 10px;
 `
 
 const StyledProductCostWrapper = styled.div`

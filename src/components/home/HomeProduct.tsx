@@ -43,6 +43,6 @@ const StyledTitleLink = styled.a`
 const StyledContentWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 1rem 0;
+  margin-left: -8px;
 `

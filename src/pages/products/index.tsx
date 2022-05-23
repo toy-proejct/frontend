@@ -69,7 +69,7 @@ export default function Products() {
         )
       }
     }
-  }, [router.query, router.isReady])
+  }, [router.query, router.isReady, currentPage, products.length])
 
   return (
     <>

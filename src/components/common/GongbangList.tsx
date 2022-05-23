@@ -12,10 +12,10 @@ export default function GongbangList({ gongbang }: GongbangListType) {
   const { name, detail, mail, kakaoId, number, link, image } = gongbang
   return (
     <StyledGongBangList>
-      <Link href={link}>
+      <Link href={link} passHref>
         <StyledGongbangLink>
           <StyledImageWrapper>
-            <Image src={image} layout="fill" objectFit="scale-down" />
+            <Image src={image} layout="fill" objectFit="scale-down" alt={name} />
           </StyledImageWrapper>
           <StyledTextWrapper>
             <h3>{name}</h3>

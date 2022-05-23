@@ -136,7 +136,7 @@ function NavLink({ src, children, active, id, onClickNavLink, text }: NavLinkTyp
     onClickNavLink(id)
   }
   return (
-    <Link href={src}>
+    <Link href={src} passHref>
       <StyledNavLink active={active} onClick={clickNavLink}>
         {text ? text : children}
       </StyledNavLink>

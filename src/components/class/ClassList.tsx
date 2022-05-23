@@ -19,7 +19,7 @@ export default function ClassList({ classList }: ClassListPropType) {
       <Link href="#">
         <a>
           <StyledImageWrapper>
-            <Image src={image} layout="fill" objectFit="scale-down" />
+            <Image src={image} layout="fill" objectFit="scale-down" alt={title} />
           </StyledImageWrapper>
           <StyledTextWrapper>
             <h3>{title}</h3>

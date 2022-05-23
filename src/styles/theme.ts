@@ -5,14 +5,14 @@ const size = {
 }
 
 const view = {
-  tablet: '1024px',
-  mobile : '768px',
+  tablet: "1024px",
+  mobile: "768px",
 }
 
 const theme = {
   colors,
   size,
-  view
+  view,
 }
 
 export default theme

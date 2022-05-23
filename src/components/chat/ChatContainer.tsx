@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import chatType from "../../types/chatType"
+import chatType from "src/types/chatType"
 
 type ChatContainerType = {
   chat: chatType

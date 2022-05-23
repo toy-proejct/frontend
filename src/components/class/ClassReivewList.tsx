@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import classReviewType from "../../types/classReviewType"
+import classReviewType from "src/types/classReviewType"
 
 type ClassReviewListType = {
   review: classReviewType

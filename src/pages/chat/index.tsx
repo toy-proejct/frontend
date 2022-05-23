@@ -1,13 +1,13 @@
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import ChatRoomList from "../../src/components/chat/ChatRoomList"
-import exitIcon from "/public/statics/chat/exitIcon.png"
-import userInfoIcon from "/public/statics/chat/userInfoIcon.png"
-import imageIcon from "/public/statics/chat/imageIcon.png"
-import ChatContainer from "../../src/components/chat/ChatContainer"
-import chatData from "../../src/components/chat/data/chatDummy"
-import chatType from "../../src/types/chatType"
+import ChatRoomList from "src/components/chat/ChatRoomList"
+import exitIcon from "public/statics/chat/exitIcon.png"
+import userInfoIcon from "public/statics/chat/userInfoIcon.png"
+import imageIcon from "public/statics/chat/imageIcon.png"
+import ChatContainer from "src/components/chat/ChatContainer"
+import chatData from "src/components/chat/data/chatDummy"
+import chatType from "src/types/chatType"
 
 // chat erd가 아직 확실하지 않은 것 같아서 UI에 보이는 것들만 기본값으로 설정
 

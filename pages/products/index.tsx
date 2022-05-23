@@ -4,9 +4,9 @@ import styled from "styled-components"
 import ProductList from "../../src/components/common/ProductList"
 import ProductData from "../../src/components/home/data/productDummy"
 import { ProductType } from "../../src/types/productType"
-import dayjs from "dayjs"
 import PageNation from "../../src/components/common/PageNation"
 import { useRouter } from "next/router"
+import sortArrItems from "../../src/utils/sortArrItems"
 
 export default function Products() {
   const [products, setProducts] = useState<ProductType[]>([])
@@ -21,29 +21,22 @@ export default function Products() {
   const router = useRouter()
   const ONEPAGEMAXDATA = 16
 
-  const sortProducts = (targetText: string) => {
+  const sortProductsItem = (targetText: string) => {
     if (currentPageProducts.length) {
-      if (targetText === "최신순") {
-        const sortedCurrentPageProducts = currentPageProducts.sort((a, b) => {
-          const firstCreateAt = dayjs(a.createdAt)
-          const secondCreateAt = dayjs(b.createdAt)
-          return firstCreateAt > secondCreateAt ? -1 : firstCreateAt < secondCreateAt ? 1 : 0
-        })
-        setCurrentPageProducts(sortedCurrentPageProducts)
-      }
-      if (targetText === "인기순") {
-        const sortedCurrentPageProducts = currentPageProducts.sort((a, b) => b.likedAt - a.likedAt)
-        setCurrentPageProducts(sortedCurrentPageProducts)
-      }
-      if (targetText === "저가순") {
-        const sortedCurrentPageProducts = currentPageProducts.sort((a, b) => a.cost - b.cost)
-        setCurrentPageProducts(sortedCurrentPageProducts)
-      }
-      if (targetText === "고가순") {
-        const sortedCurrentPageProducts = currentPageProducts.sort((a, b) => b.cost - a.cost)
-        setCurrentPageProducts(sortedCurrentPageProducts)
-      }
+      setCurrentPageProducts(sortArrItems(targetText, currentPageProducts))
     }
+  }
+  const changeActivedFilter = (targetText: string) => {
+    const changedIsActiveFilter = isActivedFilter.map((item) => {
+      if (item.active) {
+        return { ...item, active: false }
+      }
+      if (item.text === targetText) {
+        return { ...item, active: true }
+      }
+      return item
+    })
+    setIsActivedFilter(changedIsActiveFilter)
   }
 
   const onClickProductFilterBtn = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -53,17 +46,8 @@ export default function Products() {
       if (item.active) currentActivedText = item.text
     })
     if (currentActivedText !== targetText) {
-      sortProducts(targetText)
-      const changeActivedFilter = isActivedFilter.map((item) => {
-        if (item.active) {
-          return { ...item, active: false }
-        }
-        if (item.text === targetText) {
-          return { ...item, active: true }
-        }
-        return item
-      })
-      setIsActivedFilter(changeActivedFilter)
+      sortProductsItem(targetText)
+      changeActivedFilter(targetText)
     }
   }
 

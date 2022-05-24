@@ -4,7 +4,7 @@ import classReviewType from "src/types/classReviewType"
 
 export default function ClassReivewList({ review }: classReviewType) {
   const { teacher, title, detail, userName } = review
-  const viewedAt = review.viewedAt.replaceAll("-", ".")
+  const viewedAt = review.viewedAt.replace("-", ".")
   return (
     <StyledReivewList>
       <h3>{teacher}</h3>

@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools"
 import { ThemeProvider } from "styled-components"
 import GlobalStyle from "../styles/GlobalStyle"
 import theme from "src/styles/theme"
+import Layout from "src/components/layout/app/Layout"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClientRef = useRef<QueryClient>()
@@ -22,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>

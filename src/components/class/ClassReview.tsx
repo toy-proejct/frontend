@@ -22,7 +22,7 @@ export default function ClassReview() {
       </StyledReviewWrapper>
       <StyledReviewMoreWrapper>
         <StyledMoreBtn onClick={onClickMoreBtn}>
-          <Image src={bottomArrow} width={25} height={25} />
+          <Image src={bottomArrow} width={25} height={25} alt="bottom arrow" />
           {currentReviewPage > reviewData.length ? "리뷰가 존재하지 않습니다" : "리뷰 더보기"}
         </StyledMoreBtn>
       </StyledReviewMoreWrapper>

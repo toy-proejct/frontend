@@ -15,7 +15,7 @@ export default function Footer() {
       <div>
         <Link href="/">
           <a>
-            <Image src={footerLogo} width={650} height={65}></Image>
+            <Image src={footerLogo} width={650} height={65} alt="logo"></Image>
           </a>
         </Link>
       </div>

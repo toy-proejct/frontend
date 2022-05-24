@@ -9,7 +9,7 @@ export default function HomeGongbang() {
     <StyledGongbangContainer>
       <StyledTitleWrapper>
         <h2>공방리스트</h2>
-        <Link href="#">
+        <Link href="/craftmap">
           <a>전체보기</a>
         </Link>
       </StyledTitleWrapper>

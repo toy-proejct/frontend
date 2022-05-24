@@ -5,6 +5,10 @@ import Link from "next/link"
 import Image from "next/image"
 import dayjs from "dayjs"
 
+type ProductListType = {
+  product: ProductType
+}
+
 const handleCreateAt = (createdAt: string) => {
   dayjs().format()
   const today = dayjs()
@@ -38,15 +42,21 @@ const handleCreateAt = (createdAt: string) => {
   return `${diffSecond}초 전`
 }
 
-export default function ProductList({ product }: ProductType) {
+export default function ProductList({ product }: ProductListType) {
   const { title, cost, image, likedAt } = product
   const createdAt = handleCreateAt(product.createdAt)
   return (
     <StyledListWrapper>
-      <Link href="#">
+      <Link href={`/products/${product.boardId}`} passHref>
         <StyledListLink>
           <StyledImageWrapper>
-            <Image src={image} layout="fill" objectFit="fill" style={{ borderRadius: 4 }} />
+            <Image
+              src={image}
+              layout="fill"
+              objectFit="fill"
+              style={{ borderRadius: 4 }}
+              alt={title}
+            />
           </StyledImageWrapper>
           <div>
             <StyledListTitle>{title}</StyledListTitle>
@@ -77,15 +87,19 @@ const StyledImageWrapper = styled.div`
   height: 150px;
   border-radius: 4px;
   position: relative;
-  ${StyledListLink}:hover & {
-    filter: brightness(0.7);
+  img {
+    transform: scale(1);
+    transition: 0.3s;
+    ${StyledListLink}:hover & {
+      transform: scale(1.05);
+    }
   }
 `
 
 const StyledListTitle = styled.p`
   font-size: 1rem;
   padding-top: 0.3rem;
-  width: 250px;
+  width: 95%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -97,8 +111,8 @@ const StyledListTitle = styled.p`
 `
 
 const StyledListWrapper = styled.li`
-  width: 250px;
-  padding: 1rem 0;
+  width: 25%;
+  padding: 1rem 10px;
 `
 
 const StyledProductCostWrapper = styled.div`

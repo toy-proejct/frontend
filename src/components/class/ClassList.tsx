@@ -4,7 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import ClassListType from "src/types/classListType"
 
-export default function ClassList({ classList }: ClassListType) {
+type ClassListPropType = {
+  classList: ClassListType
+}
+
+export default function ClassList({ classList }: ClassListPropType) {
   const { image, title, teacher, rating, likedAt, view, price } = classList
   const converRatingToStar = Array.from({ length: Math.round(rating) }, () => "⭐")
     .toString()
@@ -15,7 +19,7 @@ export default function ClassList({ classList }: ClassListType) {
       <Link href="#">
         <a>
           <StyledImageWrapper>
-            <Image src={image} layout="fill" objectFit="scale-down" />
+            <Image src={image} layout="fill" objectFit="scale-down" alt={title} />
           </StyledImageWrapper>
           <StyledTextWrapper>
             <h3>{title}</h3>

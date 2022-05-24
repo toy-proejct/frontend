@@ -1,7 +1,7 @@
 const colors = {}
 
 const size = {
-  xLarge: "1000px",
+  xLarge: "1100px",
 }
 
 const view = {

@@ -99,7 +99,7 @@ const StyledImageWrapper = styled.div`
 const StyledListTitle = styled.p`
   font-size: 1rem;
   padding-top: 0.3rem;
-  width: 250px;
+  width: 95%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -111,7 +111,7 @@ const StyledListTitle = styled.p`
 `
 
 const StyledListWrapper = styled.li`
-  width: 277px;
+  width: 25%;
   padding: 1rem 10px;
 `
 

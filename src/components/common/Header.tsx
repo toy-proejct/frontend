@@ -20,7 +20,7 @@ const HeaderContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: ${({ theme }) => theme.size.xLarge};
+    max-width: ${({ theme }) => theme.size.xLarge};
     margin: 0 auto;
     padding: 10px 0;
 

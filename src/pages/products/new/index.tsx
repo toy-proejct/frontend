@@ -97,7 +97,7 @@ export default function NewProduct() {
           </StyledProductDetailWrapper>
         </StyledArticleCotnainer>
         <StyledSubmitButtonWrapper>
-          <button>등록하기</button>
+          <button type="submit">등록하기</button>
         </StyledSubmitButtonWrapper>
       </form>
     </StyledNewProductContainer>

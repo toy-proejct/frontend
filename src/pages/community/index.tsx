@@ -14,7 +14,3 @@ export default function Community() {
     </CommunityContainer>
   )
 }
-
-Community.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
-}

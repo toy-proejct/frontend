@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { useState } from "react"
+import { ReactElement, useState } from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import CheckGray from "../../../public/statics/login/check.svg"
@@ -348,4 +348,8 @@ export default function Signup() {
       </form>
     </SignupContainer>
   )
+}
+
+Signup.getLayout = function getLayout(page: ReactElement) {
+  return { page }
 }

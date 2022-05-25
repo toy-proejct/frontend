@@ -6,7 +6,7 @@ import HomeProduct from "src/components/home/HomeProduct"
 import HomeGongbang from "src/components/home/HomeGongbang"
 import Layout from "src/components/layout/app/Layout"
 import Script from "next/script"
-import { ReactElement } from "react"
+import { ReactElement, useEffect } from "react"
 export default function Home() {
   return (
     <div>
@@ -29,10 +29,6 @@ export default function Home() {
       </StyledMainContainer>
     </div>
   )
-}
-
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
 }
 
 const StyledMainContainer = styled.main`

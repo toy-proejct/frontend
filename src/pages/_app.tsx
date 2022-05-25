@@ -8,6 +8,7 @@ import GlobalStyle from "../styles/GlobalStyle"
 import theme from "src/styles/theme"
 import { wrapper } from "src/redux/store"
 import { NextPage } from "next"
+import Layout from "src/components/layout/app/Layout"
 
 declare global {
   interface Window {
@@ -24,13 +25,10 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || ((page) => page)
-
   const queryClientRef = useRef<QueryClient>()
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient()
   }
-
   return (
     <QueryClientProvider client={queryClientRef.current}>
       <Hydrate state={pageProps.dehydratedState}>
@@ -39,7 +37,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <title>ValueBoard</title>
         </Head>
         <GlobalStyle />
-        <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          {Component.getLayout ? (
+            <Component {...pageProps} />
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
+        </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>
     </QueryClientProvider>

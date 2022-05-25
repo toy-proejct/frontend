@@ -1,8 +1,50 @@
 import styled from "styled-components"
 import React from "react"
-import Logo from "public/statics/header/VB.svg"
-import Image from "next/image"
+import Logo from "../../../public/statics/header/VB.svg"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { changeModalSwitchTrue } from "src/redux/reducer/modal"
+import LoginModal from "../login/LoginModal"
+import { useSelector } from "src/util/hooks/useSelector"
+
+const Header: React.FC = () => {
+  const dispatch = useDispatch()
+  const modalSwitch = useSelector(({ modal }) => modal.switch)
+  const onClickOpenModal = () => {
+    dispatch(changeModalSwitchTrue())
+  }
+  return (
+    <HeaderContainer>
+      <div className="nav">
+        <div className="nav-left">
+          <div className="logo">
+            <Link href="/">
+              <a>
+                <Logo />
+              </a>
+            </Link>
+          </div>
+          <Link href="/community">
+            <a>커뮤니티</a>
+          </Link>
+          <Link href="/craftmap">
+            <a>우리동네공방</a>
+          </Link>
+          <Link href="/class">
+            <a>커스텀클래스</a>
+          </Link>
+        </div>
+        <div className="nav-right">
+          <a onClick={onClickOpenModal}>로그인</a>
+          <a>회원가입</a>
+        </div>
+      </div>
+      {modalSwitch && <LoginModal />}
+    </HeaderContainer>
+  )
+}
+
+export default Header
 
 const HeaderContainer = styled.div`
   border-bottom: 1px solid #ededed;
@@ -50,32 +92,3 @@ const HeaderContainer = styled.div`
     }
   }
 `
-
-const Header: React.FC = () => {
-  return (
-    <HeaderContainer>
-      <div className="nav">
-        <div className="nav-left">
-          <div className="logo">
-            <Link href="/">
-              <a>
-                <Image src={Logo} alt="로고" />
-              </a>
-            </Link>
-          </div>
-          <a style={{ color: "#35c5f0" }}>커뮤니티</a>
-          <a>우리동네공방</a>
-          <Link href="/class">
-            <a>커스텀클래스</a>
-          </Link>
-        </div>
-        <div className="nav-right">
-          <a>로그인</a>
-          <a>회원가입</a>
-        </div>
-      </div>
-    </HeaderContainer>
-  )
-}
-
-export default Header

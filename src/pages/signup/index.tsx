@@ -2,11 +2,13 @@ import { NextPage } from "next"
 import { useState } from "react"
 import styled from "styled-components"
 import Image from "next/image"
-import CheckGray from "public/statics/login/check.svg"
-import CheckRed from "public/statics/login/red-check.svg"
-import CircleCheckGray from "public/statics/login/circle-check.svg"
-import CircleCheckRed from "public/statics/login/circle-check-red.svg"
-import ArrowBottom from "public/statics/login/arrow-bottom.svg"
+import CheckGray from "../../../public/statics/login/check.svg"
+import CheckRed from "../../../public/statics/login/red-check.svg"
+import CircleCheckGray from "../../../public/statics/login/circle-check.svg"
+import CircleCheckRed from "../../../public/statics/login/circle-check-red.svg"
+import ArrowBottom from "../../../public/statics/login/arrow-bottom.svg"
+import { client } from "src/api/client"
+import { useSelector } from "react-redux"
 
 const SignupContainer = styled.div`
   display: flex;
@@ -224,7 +226,9 @@ const SignupContainer = styled.div`
   }
 `
 
-const Signup: NextPage = () => {
+export default function Signup() {
+  // const accessToken = useSelector(({ auth }) => auth.access_token)
+  // console.log(accessToken)
   const [checkAll, setCheckAll] = useState(false)
   const [checkboxList, setCheckboxList] = useState([
     {
@@ -256,6 +260,31 @@ const Signup: NextPage = () => {
       text: "개인정보 광고활용 동의(선택)",
     },
   ])
+
+  // const onSubmitUserInfo = async (e) => {
+  //   e.preventDefault()
+  //   const userInfo = {
+  //     memberRequest: {
+  //       email: "",
+  //       introduce: "안녕하세요 이성운입니다.",
+  //       nickname: "야울해",
+  //       password: "",
+  //       phone: "010-4428-2228",
+  //     },
+  //     oauthRequest: {
+  //       accessToken: accessToken,
+  //       providerType: "KAKAO",
+  //       snsId: "",
+  //     },
+  //   }
+  //   try {
+  //     const result = await client.post("/api/member/register", userInfo)
+  //     console.log(result)
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
+
   return (
     <SignupContainer>
       <form className="form">
@@ -280,14 +309,14 @@ const Signup: NextPage = () => {
           <div className="phone-brand">
             <input type="text" placeholder="통신사" />
             <div className="arrow-icon">
-              <Image src={ArrowBottom} />
+              <ArrowBottom />
             </div>
           </div>
         </div>
         <div className="checkbox-container">
           <div className="checkbox-all">
             <div className="circle-check-all">
-              {checkAll ? <Image src={CircleCheckRed} /> : <Image src={CircleCheckGray} />}
+              {checkAll ? <CircleCheckRed /> : <CircleCheckGray />}
             </div>
             <span>전체동의</span>
           </div>
@@ -297,17 +326,17 @@ const Signup: NextPage = () => {
                 <div className="left">
                   {item.checked ? (
                     <div className="check-icon">
-                      <Image src={CheckRed} alt="체크아이콘" />
+                      <CheckRed />
                     </div>
                   ) : (
                     <div className="check-icon">
-                      <Image src={CheckGray} alt="체크아이콘" />
+                      <CheckGray />
                     </div>
                   )}
                   <p>{item.text}</p>
                 </div>
                 <div className="right">
-                  <Image src={ArrowBottom} className="arrow-icon" />
+                  <ArrowBottom className="arrow-icon" />
                 </div>
               </li>
             ))}
@@ -320,5 +349,3 @@ const Signup: NextPage = () => {
     </SignupContainer>
   )
 }
-
-export default Signup

@@ -1,11 +1,109 @@
-import styled from "styled-components"
-import React from "react"
-import Logo from "public/statics/header/VB.svg"
-import KakaoLogo from "public/statics/login/kakao-logo.png"
-import NaverLogo from "public/statics/login/naver-logo.png"
-import GithubLogo from "public/statics/login/github-logo.png"
-import CancelBtn from "public/statics/login/cancel-btn.png"
+import styled, { createGlobalStyle } from "styled-components"
+import React, { useEffect } from "react"
 import Image from "next/image"
+import LogoIcon from "../../../public/statics/header/VB.svg"
+import KakaoLogo from "../../../public/statics/login/kakao-logo.png"
+import GithubLogo from "../../../public/statics/login/github-logo.png"
+import CancelBtn from "../../../public/statics/login/cancel-btn.png"
+import { useDispatch } from "react-redux"
+import { useSelector } from "src/util/hooks/useSelector"
+import { changeModalSwitchFalse } from "src/redux/reducer/modal"
+
+interface GlobalStyleProps {
+  modal: boolean
+}
+
+export default function LoginModal() {
+  const dispatch = useDispatch()
+  const modal = useSelector(({ modal }) => modal.switch)
+  const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+    body {
+      overflow: ${(props) => props.modal && "hidden"}
+    }
+  `
+
+  const onClickcloseModal = () => {
+    dispatch(changeModalSwitchFalse())
+  }
+
+  React.useEffect(() => {
+    const naver = window.naver
+
+    const login = () => {
+      const naverLogin = new naver.LoginWithNaverId({
+        clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
+        callbackUrl: process.env.NEXT_PUBLIC_NAVER_REDIRECT_URI,
+        isPopup: false,
+        loginButton: {
+          color: "green",
+          type: 1,
+          height: "60",
+        },
+      })
+
+      naverLogin.init()
+    }
+
+    login()
+  }, [])
+
+  return (
+    <>
+      <GlobalStyle modal={modal} />
+      <LoginModalContainer>
+        <div className="modal-background" onClick={onClickcloseModal}></div>
+        <div className="modal-white-box">
+          <div className="modal-cancel-btn">
+            <Image src={CancelBtn} />
+          </div>
+          <div className="social-login-container">
+            <div className="logo">
+              <LogoIcon />
+            </div>
+            <div className="text-content">
+              <h1>Value Board로 중고거래 시작하기</h1>
+              <p>간편하게 가입하고 상품을 확인하세요</p>
+            </div>
+            <div className="social-login-btn">
+              <div className="social-login-btn-container">
+                <button className="kakao">
+                  <a
+                    className="kakao-logo"
+                    href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&response_type=code`}
+                  >
+                    <Image src={KakaoLogo} />
+                  </a>
+                  <span>카카오로 이용하기</span>
+                </button>
+                <button className="naver">
+                  <a className="naver-logo">
+                    <div id="naverIdLogin" />
+                  </a>
+                  <span>네이버로 이용하기</span>
+                </button>
+                <button className="github">
+                  <a
+                    className="github-logo"
+                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URI}`}
+                  >
+                    <Image src={GithubLogo} />
+                  </a>
+                  <span>깃허브로 이용하기</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="customer-service">
+            <p>
+              도움이 필요하면<span>이메일</span> 또는 고객센터1670-2910로 문의 부탁드립니다.고객센터
+              운영시간: 09~18시 (점심시간 12~13시, 주말/공휴일 제외)
+            </p>
+          </div>
+        </div>
+      </LoginModalContainer>
+    </>
+  )
+}
 
 const LoginModalContainer = styled.div`
   .modal-background {
@@ -18,8 +116,13 @@ const LoginModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
   }
   .modal-white-box {
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    z-index: 200;
     padding: 40px 20px 20px 20px;
     background-color: rgb(247, 247, 247);
     width: 420px;
@@ -37,8 +140,9 @@ const LoginModalContainer = styled.div`
 
     .social-login-container {
       .logo {
-        text-align: center;
         margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
       }
       .text-content {
         h1 {
@@ -87,6 +191,14 @@ const LoginModalContainer = styled.div`
               font-size: 14px;
             }
           }
+          .naver {
+            #naverIdLogin {
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
         }
       }
     }
@@ -107,56 +219,3 @@ const LoginModalContainer = styled.div`
     }
   }
 `
-
-const LoginModal: React.FC = () => {
-  return (
-    <LoginModalContainer>
-      <div className="modal-background">
-        <div className="modal-white-box">
-          <div className="modal-cancel-btn">
-            <Image src={CancelBtn} />
-          </div>
-          <div className="social-login-container">
-            <div className="logo">
-              <Image src={Logo} />
-            </div>
-            <div className="text-content">
-              <h1>Value Board로 중고거래 시작하기</h1>
-              <p>간편하게 가입하고 상품을 확인하세요</p>
-            </div>
-            <div className="social-login-btn">
-              <div className="social-login-btn-container">
-                <button className="kakao">
-                  <div className="kakao-logo">
-                    <Image src={KakaoLogo} />
-                  </div>
-                  <span>카카오로 이용하기</span>
-                </button>
-                <button className="naver">
-                  <div className="naver-logo">
-                    <Image src={NaverLogo} />
-                  </div>
-                  <span>네이버로 이용하기</span>
-                </button>
-                <button className="github">
-                  <div className="github-logo">
-                    <Image src={GithubLogo} />
-                  </div>
-                  <span>깃허브로 이용하기</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="customer-service">
-            <p>
-              도움이 필요하면<span>이메일</span> 또는 고객센터1670-2910로 문의 부탁드립니다.고객센터
-              운영시간: 09~18시 (점심시간 12~13시, 주말/공휴일 제외)
-            </p>
-          </div>
-        </div>
-      </div>
-    </LoginModalContainer>
-  )
-}
-
-export default LoginModal

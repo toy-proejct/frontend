@@ -65,8 +65,8 @@ const KakaoRedirect = () => {
         url: "https://kauth.kakao.com/oauth/token",
         data: makeFormData({
           grant_type: "authorization_code",
-          client_id: "b742ac97f80474818f3a060944314e60",
-          redirect_uri: "http://localhost:3000/oauth/callback/kakao",
+          client_id: process.env.NEXT_PUBLIC_KAKAO_REAT_API!,
+          redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI!,
           code,
         }),
       }).then((res) => {

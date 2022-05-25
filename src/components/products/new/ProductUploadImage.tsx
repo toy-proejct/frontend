@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Dispatch, SetStateAction, useState } from "react"
 import photoIcon from "public/statics/products/photoIcon.svg"
 import Image from "next/image"
 import styled from "styled-components"
@@ -10,10 +10,11 @@ type ProductUploadImage = {
   onClickUploadImageDeleteBtn: (id: number) => void
 }
 
-type UploadImageList = {
+type UploadImageListType = {
   image: UploadImageType
   onClickUploadImageDeleteBtn: (id: number) => void
   index: number
+  setCurrentImageLength: Dispatch<SetStateAction<number>>
 }
 
 export default function ProductUploadImage({
@@ -53,9 +54,9 @@ export default function ProductUploadImage({
 
   return (
     <StyledUploadImageWrapper>
-      <div>
-        <p>상품이미지({currentImageLength}/6)</p>
-      </div>
+      <StyledImageLengthContainer>
+        <p>키보드 이미지({currentImageLength}/6)</p>
+      </StyledImageLengthContainer>
       <StyledImageListContainer>
         <StyledImageListWrapper>
           <StyledImageListUploadInput>
@@ -79,6 +80,7 @@ export default function ProductUploadImage({
                   image={image}
                   index={index}
                   onClickUploadImageDeleteBtn={onClickUploadImageDeleteBtn}
+                  setCurrentImageLength={setCurrentImageLength}
                 />
               ))
             : ""}
@@ -93,19 +95,33 @@ export default function ProductUploadImage({
   )
 }
 
-function UploadImageList({ image, onClickUploadImageDeleteBtn, index }: UploadImageList) {
+function UploadImageList({
+  image,
+  onClickUploadImageDeleteBtn,
+  index,
+  setCurrentImageLength,
+}: UploadImageListType) {
+  const { src, name, id } = image
   const clickUploadImageDeleteBtn = () => {
-    onClickUploadImageDeleteBtn(image.id)
+    onClickUploadImageDeleteBtn(id)
+    setCurrentImageLength((prev) => prev - 1)
   }
   return (
     <StyledImageList>
-      <Image src={image.src} layout="fill" objectFit="cover" alt={image.name} />
+      <Image src={src} layout="fill" objectFit="cover" alt={name} />
       <button onClick={clickUploadImageDeleteBtn}>X</button>
       {index === 0 && <span>대표이미지</span>}
     </StyledImageList>
   )
 }
 
+const StyledImageLengthContainer = styled.div`
+  flex: 0 0 15%;
+`
+
+const StyledImageListContainer = styled.div`
+  flex-grow: 1;
+`
 const StyledImageDetailWrapper = styled.div`
   padding: 0.4rem;
   font-size: 0.8rem;
@@ -115,11 +131,6 @@ const StyledImageDetailWrapper = styled.div`
 const StyledImageListWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-`
-
-const StyledImageListContainer = styled.div`
-  flex-grow: 1;
-  margin-left: 2rem;
 `
 
 const StyledImageList = styled.li`
@@ -186,7 +197,7 @@ const StyledImageListUploadInput = styled.li`
   }
 `
 
-const StyledUploadImageWrapper = styled.section`
+const StyledUploadImageWrapper = styled.article`
   display: flex;
   padding: 1rem 0;
 `

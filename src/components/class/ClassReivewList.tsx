@@ -2,7 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import classReviewType from "src/types/classReviewType"
 
-export default function ClassReivewList({ review }: classReviewType) {
+type ClassReviewListType = {
+  review: classReviewType
+}
+
+export default function ClassReivewList({ review }: ClassReviewListType) {
   const { teacher, title, detail, userName } = review
   const viewedAt = review.viewedAt.replace("-", ".")
   return (

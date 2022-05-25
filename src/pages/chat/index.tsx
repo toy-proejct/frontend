@@ -61,7 +61,6 @@ export default function Chat() {
           currentActiveChat = item.chatRoomId
         }
       })
-      console.log(currentActiveChat)
       if (currentActiveChat !== null) {
         const filterChatList = chatList!.filter((chat) => chat.id !== currentActiveChat)
         const filterActiveChat = chatActiveList.filter(

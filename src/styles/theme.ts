@@ -1,18 +1,18 @@
 const colors = {}
 
 const size = {
-  xLarge: "1000px",
+  xLarge: "1100px",
 }
 
 const view = {
-  tablet: '1024px',
-  mobile : '768px',
+  tablet: "1024px",
+  mobile: "768px",
 }
 
 const theme = {
   colors,
   size,
-  view
+  view,
 }
 
 export default theme

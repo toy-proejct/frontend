@@ -11,6 +11,10 @@ export default function Home() {
   return (
     <div>
       <Script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></Script>
+      <Script
+        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+        defer={false}
+      ></Script>
       <Head>
         <title>Value Board | 커스텀 키보드</title>
         <meta name="description" content="커스텀 키보드 판매, 커뮤니티는 Keyboard Value로!" />

@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import ClassCateroy from "src/components/class/ClassCateroy"
 import ClassReview from "src/components/class/ClassReview"

@@ -9,7 +9,7 @@ export default function HomeProduct() {
     <StyledContainer>
       <StyledTitleWrapper>
         <h2>최신 상품</h2>
-        <Link href="#">
+        <Link href="/products" passHref>
           <StyledTitleLink>전체보기</StyledTitleLink>
         </Link>
       </StyledTitleWrapper>
@@ -43,6 +43,6 @@ const StyledTitleLink = styled.a`
 const StyledContentWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 1rem 0;
+  margin-left: -8px;
 `

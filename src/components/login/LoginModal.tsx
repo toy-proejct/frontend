@@ -53,7 +53,7 @@ export default function LoginModal() {
       <LoginModalContainer>
         <div className="modal-background" onClick={onClickcloseModal}></div>
         <div className="modal-white-box">
-          <div className="modal-cancel-btn">
+          <div className="modal-cancel-btn" onClick={onClickcloseModal}>
             <Image src={CancelBtn} />
           </div>
           <div className="social-login-container">

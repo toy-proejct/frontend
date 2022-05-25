@@ -1,19 +1,20 @@
-import { NextPage } from "next"
 import styled from "styled-components"
-import Header from "src/components/common/Header"
 import QuestionList from "src/components/community/QuestionList"
 import Search from "src/components/community/Search"
+import Layout from "src/components/layout/app/Layout"
+import { ReactElement } from "react"
 
 const CommunityContainer = styled.div``
 
-const Community: NextPage = () => {
+export default function Community() {
   return (
     <CommunityContainer>
-      <Header />
       <Search />
       <QuestionList />
     </CommunityContainer>
   )
 }
 
-export default Community
+Community.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}

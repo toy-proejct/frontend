@@ -1,13 +1,31 @@
 import type { AppProps } from "next/app"
 import Head from "next/head"
-import { useRef } from "react"
+import { ReactElement, ReactNode, useRef } from "react"
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { ThemeProvider } from "styled-components"
 import GlobalStyle from "../styles/GlobalStyle"
 import theme from "src/styles/theme"
+import { wrapper } from "src/redux/store"
+import { NextPage } from "next"
 
-function MyApp({ Component, pageProps }: AppProps) {
+declare global {
+  interface Window {
+    naver: any
+  }
+}
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page)
+
   const queryClientRef = useRef<QueryClient>()
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient()
@@ -21,13 +39,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>ValueBoard</title>
         </Head>
         <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>
     </QueryClientProvider>
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

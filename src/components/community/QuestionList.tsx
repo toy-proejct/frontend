@@ -2,11 +2,11 @@ import styled from "styled-components"
 import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { QuetionsI } from "src/types/quetionType"
+import { QuetionType } from "src/types/quetionType"
 
 const QuestionList: React.FC = () => {
   const router = useRouter()
-  const [quetionList, setQuestionList] = useState<QuetionsI[]>([
+  const [quetionList, setQuestionList] = useState<QuetionType[]>([
     {
       id: "1",
       title: "이렇게 생긴 가림막이 있나요??",
@@ -126,7 +126,7 @@ const QuestionList: React.FC = () => {
             <p>다시 돌아온 5월 멘토 모집 🙋🏻‍♂️📝</p>
           </div>
           <hr />
-          {quetionList.map((item: QuetionsI) => (
+          {quetionList.map((item: QuetionType) => (
             <Link href={`/community/${item.id}`} key={item.id}>
               <a>
                 <div className="question-item">

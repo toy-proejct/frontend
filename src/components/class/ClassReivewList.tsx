@@ -8,7 +8,7 @@ type ClassReviewListType = {
 
 export default function ClassReivewList({ review }: ClassReviewListType) {
   const { teacher, title, detail, userName } = review
-  const viewedAt = review.viewedAt.replaceAll("-", ".")
+  const viewedAt = review.viewedAt.replace("-", ".")
   return (
     <StyledReivewList>
       <h3>{teacher}</h3>

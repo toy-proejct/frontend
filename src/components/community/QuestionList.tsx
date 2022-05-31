@@ -1,8 +1,12 @@
 import styled from "styled-components"
 import React, { useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { QuetionsI } from "src/types/quetionType"
 
 const QuestionList: React.FC = () => {
-  const [quetionList, setQuestionList] = useState([
+  const router = useRouter()
+  const [quetionList, setQuestionList] = useState<QuetionsI[]>([
     {
       id: "1",
       title: "이렇게 생긴 가림막이 있나요??",
@@ -103,7 +107,7 @@ const QuestionList: React.FC = () => {
             </select>
           </div>
           <div className="question-submit">
-            <button>질문하기</button>
+            <button onClick={() => router.push("/community/write")}>질문하기</button>
           </div>
         </div>
         <div className="question-list">
@@ -122,39 +126,41 @@ const QuestionList: React.FC = () => {
             <p>다시 돌아온 5월 멘토 모집 🙋🏻‍♂️📝</p>
           </div>
           <hr />
-          {quetionList.map((item) => (
-            <>
-              <div className="question-item">
-                <div className="left">
-                  <h1 className="title">{item.title}</h1>
-                  <p className="content">{item.content}</p>
-                  <div className="profile">
-                    <div className="profile-img">
-                      <img src={item.img_url} alt="프로필 사진" />
-                      <span>{item.writer}</span>
+          {quetionList.map((item: QuetionsI) => (
+            <Link href={`/community/${item.id}`} key={item.id}>
+              <a>
+                <div className="question-item">
+                  <div className="left">
+                    <h1 className="title">{item.title}</h1>
+                    <p className="content">{item.content}</p>
+                    <div className="profile">
+                      <div className="profile-img">
+                        <img src={item.img_url} alt="프로필 사진" />
+                        <span>{item.writer}</span>
+                      </div>
+                      <div className="question-info">
+                        <span className="question-info-created">{item.created}</span>
+                        <span className="question-info-comment">
+                          댓글 <b>{item.comment_count}</b>
+                        </span>
+                        <span className="question-info-views">조회 {item.view_count}</span>
+                      </div>
                     </div>
-                    <div className="question-info">
-                      <span className="question-info-created">{item.created}</span>
-                      <span className="question-info-comment">
-                        댓글 <b>{item.comment_count}</b>
-                      </span>
-                      <span className="question-info-views">조회 {item.view_count}</span>
+                    <div className="hashtag-list">
+                      {item.hashtags.map((item, index) => (
+                        <span className="hashtag-item" key={index}>
+                          #{item}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  <div className="hashtag-list">
-                    {item.hashtags.map((item) => (
-                      <span className="hashtag-item" key={item.id}>
-                        #{item}
-                      </span>
-                    ))}
+                  <div className="right">
+                    <img src={item.img_url} alt="질문사진" />
                   </div>
                 </div>
-                <div className="right">
-                  <img src={item.img_url} alt="질문사진" />
-                </div>
-              </div>
-              <hr></hr>
-            </>
+                <hr></hr>
+              </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -258,6 +264,9 @@ const QuestionListContainer = styled.div`
 
         margin: 30px 0;
         padding: 0 16px;
+        ${({ theme }) => theme.maxMedia.mobile} {
+          padding: 0;
+        }
         .left {
           width: 85%;
           .title {

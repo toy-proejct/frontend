@@ -12,7 +12,7 @@ export default function ClassList({ classList }: ClassListPropType) {
   const { image, title, teacher, rating, likedAt, view, price } = classList
   const converRatingToStar = Array.from({ length: Math.round(rating) }, () => "⭐")
     .toString()
-    .replaceAll(/,/g, "")
+    .replace(/,/g, "")
 
   return (
     <StyledClassList>

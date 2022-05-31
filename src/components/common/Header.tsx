@@ -1,8 +1,11 @@
 import styled from "styled-components"
 import React, { ReactNode, useState } from "react"
-import Logo from "public/statics/header/VB.svg"
-import Image from "next/image"
+import Logo from "../../../public/statics/header/VB.svg"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { changeModalSwitchTrue } from "src/redux/reducer/modal"
+import LoginModal from "../login/LoginModal"
+import { useSelector } from "src/util/hooks/useSelector"
 
 type NavLinkType = {
   src: string
@@ -13,42 +16,12 @@ type NavLinkType = {
   onClickNavLink: (id: number) => void
 }
 
-const HeaderContainer = styled.div`
-  border-bottom: 1px solid #ededed;
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    max-width: ${({ theme }) => theme.size.xLarge};
-    margin: 0 auto;
-    padding: 10px 0;
-
-    &-left {
-      display: flex;
-      align-items: center;
-
-      .logo {
-        margin-right: 35px;
-      }
-    }
-
-    &-right {
-      a {
-        position: relative;
-        display: inline-block;
-        margin: 6px 10px 0;
-        padding: 14px 6px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #424242;
-        cursor: pointer;
-      }
-    }
-  }
-`
-
 const Header: React.FC = () => {
+  const dispatch = useDispatch()
+  const modalSwitch = useSelector(({ modal }) => modal.switch)
+  const onClickOpenModal = () => {
+    dispatch(changeModalSwitchTrue())
+  }
   const [navCategory, setNavCategory] = useState([
     { id: 0, src: "/", active: false },
     {
@@ -105,7 +78,7 @@ const Header: React.FC = () => {
               onClickNavLink={onClickNavLink}
               active={navCategory[0].active}
             >
-              <Image src={Logo} alt="로고" />
+              <Logo />
             </NavLink>
           </div>
           {navCategory.map(
@@ -123,13 +96,51 @@ const Header: React.FC = () => {
           )}
         </div>
         <div className="nav-right">
-          <a>로그인</a>
+          <a onClick={onClickOpenModal}>로그인</a>
           <a>회원가입</a>
         </div>
       </div>
+      {modalSwitch && <LoginModal />}
     </HeaderContainer>
   )
 }
+
+export default Header
+
+const HeaderContainer = styled.div`
+  border-bottom: 1px solid #ededed;
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: ${({ theme }) => theme.size.xLarge};
+    margin: 0 auto;
+    padding: 10px 0;
+
+    &-left {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        margin-right: 35px;
+      }
+    }
+
+    &-right {
+      a {
+        position: relative;
+        display: inline-block;
+        margin: 6px 10px 0;
+        padding: 14px 6px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #424242;
+        cursor: pointer;
+      }
+    }
+  }
+`
 
 function NavLink({ src, children, active, id, onClickNavLink, text }: NavLinkType) {
   const clickNavLink = () => {
@@ -159,4 +170,3 @@ const StyledNavLink = styled.a<{ active: boolean }>`
   cursor: pointer;
   color: ${({ active }) => active && "#35c5f0"};
 `
-export default Header

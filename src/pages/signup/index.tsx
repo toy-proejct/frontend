@@ -1,20 +1,16 @@
-import { NextPage } from "next"
 import { ReactElement, useState } from "react"
 import styled from "styled-components"
-import Image from "next/image"
 import CheckGray from "../../../public/statics/login/check.svg"
 import CheckRed from "../../../public/statics/login/red-check.svg"
 import CircleCheckGray from "../../../public/statics/login/circle-check.svg"
 import CircleCheckRed from "../../../public/statics/login/circle-check-red.svg"
 import ArrowBottom from "../../../public/statics/login/arrow-bottom.svg"
-import { client } from "src/api/client"
-import { useSelector } from "react-redux"
 
 const SignupContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding: 50px 0;
   background: rgb(249, 249, 249);
   form {
     width: 570px;

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import React, { ReactNode, useState } from "react"
+import React, { useState } from "react"
 import Logo from "../../../public/statics/header/VB.svg"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
@@ -10,9 +10,8 @@ import { useSelector } from "src/util/hooks/useSelector"
 type NavLinkType = {
   src: string
   active: boolean
-  children?: ReactNode
   id: number
-  text?: string
+  text: string
   onClickNavLink: (id: number) => void
 }
 
@@ -23,38 +22,38 @@ const Header: React.FC = () => {
     dispatch(changeModalSwitchTrue())
   }
   const [navCategory, setNavCategory] = useState([
-    { id: 0, src: "/", active: false },
     {
-      id: 1,
+      id: 0,
       src: "/community",
       text: "커뮤니티",
       active: false,
     },
     {
-      id: 2,
+      id: 1,
       src: "/craftmap",
       text: "우리동네공방",
       active: false,
     },
     {
-      id: 3,
+      id: 2,
       src: "/class",
       text: "커스텀클래스",
       active: false,
     },
     {
-      id: 4,
+      id: 3,
       src: "/products",
       text: "판매",
       active: false,
     },
     {
-      id: 5,
+      id: 4,
       src: "/chat",
       text: "채팅",
       active: false,
     },
   ])
+
   const onClickNavLink = (id: number) => {
     const changedActiveNavCategory = navCategory.map((item) => {
       if (item.id === id) {
@@ -67,33 +66,38 @@ const Header: React.FC = () => {
     })
     setNavCategory(changedActiveNavCategory)
   }
+
+  const onClickLogo = () => {
+    const changedActiveNavCategory = navCategory.map((item) => {
+      if (item.active) {
+        return { ...item, active: false }
+      }
+      return item
+    })
+    setNavCategory(changedActiveNavCategory)
+  }
+
   return (
     <HeaderContainer>
       <div className="nav">
         <div className="nav-left">
           <div className="logo">
-            <NavLink
-              src={navCategory[0].src}
-              id={navCategory[0].id}
-              onClickNavLink={onClickNavLink}
-              active={navCategory[0].active}
-            >
-              <Logo />
-            </NavLink>
+            <Link href="/">
+              <a onClick={onClickLogo}>
+                <Logo />
+              </a>
+            </Link>
           </div>
-          {navCategory.map(
-            (item, idx) =>
-              idx >= 1 && (
-                <NavLink
-                  src={item.src}
-                  key={item.id}
-                  active={item.active}
-                  onClickNavLink={onClickNavLink}
-                  id={item.id}
-                  text={item.text}
-                />
-              ),
-          )}
+          {navCategory.map((item) => (
+            <NavLink
+              src={item.src}
+              key={item.id}
+              active={item.active}
+              onClickNavLink={onClickNavLink}
+              id={item.id}
+              text={item.text}
+            />
+          ))}
         </div>
         <div className="nav-right">
           <a onClick={onClickOpenModal}>로그인</a>
@@ -105,7 +109,18 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+function NavLink({ src, active, id, onClickNavLink, text }: NavLinkType) {
+  const clickNavLink = () => {
+    onClickNavLink(id)
+  }
+  return (
+    <Link href={src} passHref>
+      <StyledNavLink active={active} onClick={clickNavLink}>
+        {text}
+      </StyledNavLink>
+    </Link>
+  )
+}
 
 const HeaderContainer = styled.div`
   border-bottom: 1px solid #ededed;
@@ -142,19 +157,6 @@ const HeaderContainer = styled.div`
   }
 `
 
-function NavLink({ src, children, active, id, onClickNavLink, text }: NavLinkType) {
-  const clickNavLink = () => {
-    onClickNavLink(id)
-  }
-  return (
-    <Link href={src} passHref>
-      <StyledNavLink active={active} onClick={clickNavLink}>
-        {text ? text : children}
-      </StyledNavLink>
-    </Link>
-  )
-}
-
 const StyledNavLink = styled.a<{ active: boolean }>`
   &:hover {
     color: #35c5f0;
@@ -170,3 +172,5 @@ const StyledNavLink = styled.a<{ active: boolean }>`
   cursor: pointer;
   color: ${({ active }) => active && "#35c5f0"};
 `
+
+export default Header

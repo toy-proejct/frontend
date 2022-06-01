@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import React, { useState } from "react"
 import Logo from "../../../public/statics/header/VB.svg"
+import MenuIcon from "../../../public/statics/header/bytesize_menu.svg"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
 import { changeModalSwitchTrue } from "src/redux/reducer/modal"
@@ -99,6 +100,12 @@ const Header: React.FC = () => {
             />
           ))}
         </div>
+        <div className="mobile-nav-menu">
+          <MenuIcon width="25" height="25" />
+        </div>
+        <div className="mobile-logo">
+          <Logo />
+        </div>
         <div className="nav-right">
           <a onClick={onClickOpenModal}>로그인</a>
           <a>회원가입</a>
@@ -132,6 +139,9 @@ const HeaderContainer = styled.div`
     max-width: ${({ theme }) => theme.size.xLarge};
     margin: 0 auto;
     padding: 10px 0;
+    ${({ theme }) => theme.maxMedia.mobile} {
+      padding: 10px 10px;
+    }
 
     &-left {
       display: flex;
@@ -140,6 +150,25 @@ const HeaderContainer = styled.div`
       .logo {
         margin-right: 35px;
       }
+      ${({ theme }) => theme.maxMedia.mobile} {
+        display: none;
+      }
+    }
+
+    .mobile-nav-menu {
+      display: none;
+      ${({ theme }) => theme.maxMedia.mobile} {
+        display: block;
+      }
+    }
+
+    .mobile-logo {
+      position: absolute;
+      left: 44%;
+      display: none;
+      ${({ theme }) => theme.maxMedia.mobile} {
+        display: block;
+      }
     }
 
     &-right {
@@ -147,11 +176,21 @@ const HeaderContainer = styled.div`
         position: relative;
         display: inline-block;
         margin: 6px 10px 0;
-        padding: 14px 6px;
+        padding: 14px 0px;
         font-size: 14px;
         font-weight: bold;
         color: #424242;
         cursor: pointer;
+        ${({ theme }) => theme.maxMedia.mobile} {
+          font-size: 13px;
+          margin: 0;
+          padding: 0;
+          font-weight: 400;
+
+          &:nth-child(2) {
+            margin-left: 4px;
+          }
+        }
       }
     }
   }

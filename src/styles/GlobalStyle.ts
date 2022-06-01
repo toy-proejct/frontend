@@ -32,7 +32,6 @@ const globalStyle = css`
   canvas,
   svg {
     display: block;
-    max-width: 100%;
   }
   button {
     background: none;

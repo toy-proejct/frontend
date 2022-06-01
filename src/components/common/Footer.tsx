@@ -58,9 +58,7 @@ const StyledTeamLink = styled.a`
   }
 `
 
-const StyledTeamList = styled.li`
-  padding: 0 0.8rem;
-`
+const StyledTeamList = styled.li``
 
 const StyledTeamTitle = styled.h3`
   font-size: 1.5rem;
@@ -69,4 +67,6 @@ const StyledTeamTitle = styled.h3`
 
 const StyledTeamWrapper = styled.ul`
   display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 `

@@ -113,6 +113,9 @@ const StyledListTitle = styled.p`
 const StyledListWrapper = styled.li`
   width: 25%;
   padding: 1rem 10px;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    width: 50%;
+  }
 `
 
 const StyledProductCostWrapper = styled.div`

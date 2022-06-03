@@ -34,9 +34,9 @@ export default function Footer() {
 // 아이디랑 링크 받기
 const FooterLinkList = ({ name, href }: FooterLinkListType) => {
   return (
-    <StyledTeamList>
+    <li>
       <StyledTeamLink href={href}>{name}</StyledTeamLink>
-    </StyledTeamList>
+    </li>
   )
 }
 
@@ -49,6 +49,11 @@ const StyledFooter = styled.footer`
   align-items: center;
   padding: 3rem 0;
   color: white;
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    img {
+      width: 300px !important;
+    }
+  }
 `
 
 const StyledTeamLink = styled.a`
@@ -58,11 +63,13 @@ const StyledTeamLink = styled.a`
   }
 `
 
-const StyledTeamList = styled.li``
-
 const StyledTeamTitle = styled.h3`
   font-size: 1.5rem;
   padding: 2rem 0;
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+  }
 `
 
 const StyledTeamWrapper = styled.ul`

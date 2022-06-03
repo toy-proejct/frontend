@@ -39,6 +39,9 @@ const StyledGongBangList = styled.li`
   &:hover {
     box-shadow: 3px 5px 12px -7px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
   }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    flex: 0 0 100%;
+  }
 `
 
 const StyledGongbangLink = styled.a`

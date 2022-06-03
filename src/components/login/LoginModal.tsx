@@ -8,6 +8,8 @@ import CancelBtn from "../../../public/statics/login/cancel-btn.png"
 import { useDispatch } from "react-redux"
 import { useSelector } from "src/util/hooks/useSelector"
 import { changeModalSwitchFalse } from "src/redux/reducer/modal"
+import SocialLoginBtn from "../common/SocialLoginBtn"
+import envs from "src/config/dotenv"
 
 interface GlobalStyleProps {
   modal: boolean
@@ -66,7 +68,7 @@ export default function LoginModal() {
             </div>
             <div className="social-login-btn">
               <div className="social-login-btn-container">
-                <button className="kakao">
+                {/* <button className="kakao">
                   <a
                     className="kakao-logo"
                     href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&response_type=code`}
@@ -74,7 +76,12 @@ export default function LoginModal() {
                     <Image src={KakaoLogo} />
                   </a>
                   <span>카카오로 이용하기</span>
-                </button>
+                </button> */}
+                <SocialLoginBtn
+                  href={`https://kauth.kakao.com/oauth/authorize?client_id=${envs.kakaoClientId}&redirect_uri=${envs.kakaoRedirecUri}&response_type=code`}
+                  social="카카오"
+                  img={KakaoLogo}
+                />
                 <button className="naver">
                   <a className="naver-logo">
                     <div id="naverIdLogin" />

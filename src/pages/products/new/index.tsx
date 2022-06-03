@@ -10,13 +10,16 @@ export type UploadImageType = {
 
 export default function NewProduct() {
   const [uploadImageList, setUploadImageList] = useState<UploadImageType[]>([])
+
   const addUploadImageList = (image: UploadImageType) => {
     setUploadImageList((prev) => [...prev, image])
   }
+
   const onClickUploadImageDeleteBtn = (id: number) => {
     const filterUploadImageList = uploadImageList.filter((image) => image.id !== id)
     setUploadImageList(filterUploadImageList)
   }
+
   const onSubmitNewProduct = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     alert("submit!!!")

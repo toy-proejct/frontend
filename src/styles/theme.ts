@@ -2,6 +2,11 @@ const colors = {}
 
 const size = {
   xLarge: "1100px",
+  large: "900px",
+  middle: "750px",
+  small: "600px",
+  xsmall: "460px",
+  minimun: "380px",
 }
 
 const customMediaMaxQuery = (maxWidth: number): string => {
@@ -13,7 +18,11 @@ const customMediaMinQuery = (minWidth: number): string => {
 }
 
 const maxMedia = {
+  notebook: customMediaMaxQuery(1110),
+  tablet: customMediaMaxQuery(920),
   mobile: customMediaMaxQuery(767),
+  smallMobile: customMediaMaxQuery(620),
+  minimun: customMediaMaxQuery(420),
 }
 
 const minMedia = {

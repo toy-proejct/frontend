@@ -7,6 +7,7 @@ import { ProductType } from "../../types/productType"
 import PageNation from "../../components/common/PageNation"
 import { useRouter } from "next/router"
 import sortArrItems from "../../utils/sortArrItems"
+import Link from "next/link"
 
 export default function Products() {
   const [products, setProducts] = useState<ProductType[]>([])
@@ -107,11 +108,36 @@ export default function Products() {
             dataLength={products.length}
             currentPage={currentPage}
           />
+          <StyledNewLinkWrapper>
+            <Link href="/products/new" passHref>
+              <StyledNewLink>글쓰기</StyledNewLink>
+            </Link>
+          </StyledNewLinkWrapper>
         </StyledProductWrapper>
       </StyledProductContainer>
     </>
   )
 }
+
+const StyledNewLinkWrapper = styled.div`
+  position: sticky;
+  bottom: 50px;
+  right: 15px;
+  float: right;
+  margin-right: 14px;
+  margin-top: -30px;
+`
+
+const StyledNewLink = styled.a`
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 9.5px 30px;
+  font-weight: 400;
+  text-align: center;
+  color: #ffffff;
+  background: rgb(53, 202, 244);
+  font-weight: bold;
+`
 
 const StyledProductFilterBtn = styled.button<{ active: boolean }>`
   padding: 0 0.2rem;

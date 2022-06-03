@@ -1,10 +1,27 @@
 import Link from "next/link"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import ProductList from "../common/ProductList"
 import ProductData from "./data/productDummy"
+import throttle from "lodash/throttle"
 
 export default function HomeProduct() {
+  const [itemNumberPerWidth, setItemNumberPerWidth] = useState<4 | 8>(8)
+  const handleResize = () => {
+    if (window.innerWidth <= 767) {
+      setItemNumberPerWidth(4)
+    } else {
+      setItemNumberPerWidth(8)
+    }
+  }
+  useEffect(() => {
+    if (window.innerWidth <= 767) {
+      setItemNumberPerWidth(4)
+    }
+    window.addEventListener("resize", throttle(handleResize, 1000))
+
+    return () => window.removeEventListener("resize", throttle(handleResize, 1000))
+  }, [])
   return (
     <StyledContainer>
       <StyledTitleWrapper>
@@ -15,7 +32,7 @@ export default function HomeProduct() {
       </StyledTitleWrapper>
       <StyledContentWrapper>
         {ProductData.map((product, idx) => {
-          if (idx < 8) {
+          if (idx < itemNumberPerWidth) {
             return <ProductList product={product} key={product.boardId} />
           }
         })}

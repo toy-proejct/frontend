@@ -116,12 +116,13 @@ const StyledSubmitButtonWrapper = styled.div`
   flex-direction: row-reverse;
   button {
     background: rgb(53, 202, 244);
-    color: white;
-    padding: 1rem;
+    font-size: 14px;
     border-radius: 4px;
-    padding: 0.9rem 2rem;
+    padding: 9.5px 30px;
+    font-weight: 400;
     text-align: center;
     color: #ffffff;
+    background-color: #35c5f0;
     font-weight: bold;
   }
 `
@@ -212,5 +213,23 @@ const StyledNewProductContainer = styled.section`
   h3 {
     padding: 1rem 0;
     border-bottom: 2px solid rgb(30, 29, 41);
+  }
+  width: ${({ theme }) => theme.size.xLarge};
+  ${({ theme }) => theme.maxMedia.notebook} {
+    max-width: ${({ theme }) => theme.size.large};
+  }
+  ${({ theme }) => theme.maxMedia.tablet} {
+    max-width: ${({ theme }) => theme.size.middle};
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    max-width: ${({ theme }) => theme.size.small};
+    font-size: 0.8rem;
+  }
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    max-width: ${({ theme }) => theme.size.xsmall};
+    padding: 0 1rem;
+  }
+  ${({ theme }) => theme.maxMedia.minimun} {
+    width: 100%;
   }
 `

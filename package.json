@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,6 +17,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "dayjs": "^1.11.1",
     "next": "12.1.5",
+    "next-optimized-images": "^2.6.2",
     "next-redux-wrapper": "^7.0.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",

@@ -149,11 +149,11 @@ const HeaderContainer = styled.div`
     }
     ${({ theme }) => theme.maxMedia.smallMobile} {
       max-width: ${({ theme }) => theme.size.xsmall};
-      padding-right: 1rem;
-      padding-left: 1rem;
     }
     ${({ theme }) => theme.maxMedia.minimun} {
       width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
     }
     margin: 0 auto;
     padding: 10px 0;

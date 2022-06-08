@@ -108,6 +108,9 @@ const StyledListTitle = styled.p`
     text-underline-position: under;
     text-decoration-color: #343434;
   }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.9rem;
+  }
 `
 
 const StyledListWrapper = styled.li`
@@ -120,12 +123,18 @@ const StyledListWrapper = styled.li`
 
 const StyledProductCostWrapper = styled.div`
   font-size: 0.9rem;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.8rem;
+  }
 `
 const StyledProductHeartWrapper = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
   font-size: 0.7rem;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.6rem;
+  }
 `
 const StyledProductDetailWrapper = styled.div`
   display: flex;
@@ -135,4 +144,7 @@ const StyledProductDetailWrapper = styled.div`
 const StyledCreatedAt = styled.p`
   color: #9c9c9c;
   padding-top: 0.1rem;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.8rem;
+  }
 `

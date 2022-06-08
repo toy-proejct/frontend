@@ -53,6 +53,9 @@ const StyledGongbangLink = styled.a`
 const StyledImageWrapper = styled.div`
   flex: 0 0 40%;
   position: relative;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    flex: 0 0 50%;
+  }
 `
 
 const StyledTextWrapper = styled.div`
@@ -63,6 +66,9 @@ const StyledTextWrapper = styled.div`
   .userInfo {
     font-size: 0.9rem;
     color: #9c9c9c;
+    ${({ theme }) => theme.maxMedia.mobile} {
+      font-size: 0.6rem;
+    }
   }
   h3 {
     ${StyledGongbangLink}:hover & {
@@ -70,5 +76,8 @@ const StyledTextWrapper = styled.div`
       text-underline-position: under;
       text-decoration-color: #343434;
     }
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.7rem;
   }
 `

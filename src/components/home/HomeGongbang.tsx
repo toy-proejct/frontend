@@ -59,4 +59,7 @@ const StyledTitleWrapper = styled.div`
     color: #919191;
     text-decoration: underline;
   }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.7rem;
+  }
 `

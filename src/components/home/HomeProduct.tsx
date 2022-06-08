@@ -49,6 +49,9 @@ const StyledTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: end;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.7rem;
+  }
 `
 
 const StyledTitleLink = styled.a`

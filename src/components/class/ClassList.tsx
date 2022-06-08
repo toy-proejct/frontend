@@ -51,12 +51,24 @@ const StyledClassList = styled.li`
   &:hover {
     filter: brightness(0.9);
   }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    width: 48%;
+    margin: 1rem 0;
+  }
 `
 const StyledTextWrapper = styled.div`
   padding: 0.7rem;
   padding-left: 0;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    h3 {
+      font-size: 1rem;
+    }
+  }
   .classInfo {
     font-size: 0.8rem;
+    ${({ theme }) => theme.maxMedia.mobile} {
+      font-size: 0.7rem;
+    }
   }
   .classTeacher {
     color: #888888;
@@ -64,10 +76,16 @@ const StyledTextWrapper = styled.div`
   }
   .classPrice {
     padding-top: 0.2rem;
+    ${({ theme }) => theme.maxMedia.mobile} {
+      font-size: 0.8rem;
+    }
   }
   .classViewCount {
     font-size: 0.8rem;
     color: #888888;
     padding-left: 0.5rem;
+    ${({ theme }) => theme.maxMedia.mobile} {
+      font-size: 0.7rem;
+    }
   }
 `

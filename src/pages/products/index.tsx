@@ -138,7 +138,7 @@ const StyledProductContainer = styled.section`
 `
 
 const StyledProductWrapper = styled.div`
-  width: ${({ theme }) => theme.size.xLarge};
+  max-width: ${({ theme }) => theme.size.xLarge};
   margin: 0 auto;
   padding-top: 3rem;
   padding-bottom: 5rem;

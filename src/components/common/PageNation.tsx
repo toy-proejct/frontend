@@ -84,6 +84,9 @@ const StyledPageNationArrowBtn = styled.button<{ notActive: boolean }>`
   margin: 0 0.5rem;
   ${({ notActive }) =>
     notActive && "cursor:default; background:rgb(247,249,250);color:rgb(194,202,211)"};
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    font-size: 1.1rem;
+  }
 `
 
 const StyledPageNationWrapper = styled.ul`
@@ -99,6 +102,9 @@ const StyledPageNationList = styled.li<{ active?: boolean }>`
     padding: 0.5rem 0.7rem;
     margin: 0 0.2rem;
     border-radius: 4px;
+    ${({ theme }) => theme.maxMedia.smallMobile} {
+      font-size: 0.8rem;
+    }
     &:hover {
       ${({ active }) =>
         active ? "background:rgb(44 165 201);" : " background: rgb(226 226 226);"};

@@ -168,6 +168,24 @@ const StyledProductWrapper = styled.div`
   margin: 0 auto;
   padding-top: 3rem;
   padding-bottom: 5rem;
+
+  ${({ theme }) => theme.maxMedia.notebook} {
+    max-width: ${({ theme }) => theme.size.large};
+  }
+  ${({ theme }) => theme.maxMedia.tablet} {
+    max-width: ${({ theme }) => theme.size.middle};
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    max-width: ${({ theme }) => theme.size.small};
+  }
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    max-width: ${({ theme }) => theme.size.xsmall};
+  }
+  ${({ theme }) => theme.maxMedia.minimun} {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 `
 const StyledContentWrapper = styled.ul`
   display: flex;

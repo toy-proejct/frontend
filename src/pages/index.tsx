@@ -46,7 +46,8 @@ const StyledMainContainer = styled.main`
   }
   ${({ theme }) => theme.maxMedia.smallMobile} {
     max-width: ${({ theme }) => theme.size.xsmall};
-    padding: 0 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
   ${({ theme }) => theme.maxMedia.minimun} {
     width: 100%;

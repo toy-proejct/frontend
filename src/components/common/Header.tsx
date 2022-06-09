@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useDispatch } from "react-redux"
 import { changeModalSwitchTrue } from "src/redux/reducer/modal"
 import LoginModal from "../login/LoginModal"
-import { useSelector } from "src/util/hooks/useSelector"
+import { useSelector } from "src/hooks/useSelector"
 
 type NavLinkType = {
   src: string

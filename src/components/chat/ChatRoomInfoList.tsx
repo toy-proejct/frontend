@@ -4,13 +4,17 @@ import profile from "public/statics/chat/profileExample.png"
 import chatType from "src/types/chatType"
 import Image from "next/image"
 
-type ChatRoomList = {
+type ChatRoomInfoListType = {
   chat: chatType
   active: boolean
   onClickChatRoomList: (id: number) => void
 }
 
-export default function ChatRoomList({ chat, onClickChatRoomList, active }: ChatRoomList) {
+export default function ChatRoomInfoList({
+  chat,
+  onClickChatRoomList,
+  active,
+}: ChatRoomInfoListType) {
   const [isOpendMoreInfo, setIsOpendMoreInfo] = useState(false)
   const { title, lastChat, modifiedAt, notReadCount, id } = chat
   const handleMoreInfo = (event: React.MouseEvent) => {

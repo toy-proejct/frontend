@@ -137,12 +137,26 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
 
     max-width: ${({ theme }) => theme.size.xLarge};
+    width: ${({ theme }) => theme.size.xLarge};
+    ${({ theme }) => theme.maxMedia.notebook} {
+      max-width: ${({ theme }) => theme.size.large};
+    }
+    ${({ theme }) => theme.maxMedia.tablet} {
+      max-width: ${({ theme }) => theme.size.middle};
+    }
+    ${({ theme }) => theme.maxMedia.mobile} {
+      max-width: ${({ theme }) => theme.size.small};
+    }
+    ${({ theme }) => theme.maxMedia.smallMobile} {
+      max-width: ${({ theme }) => theme.size.xsmall};
+    }
+    ${({ theme }) => theme.maxMedia.minimun} {
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
     margin: 0 auto;
     padding: 10px 0;
-    ${({ theme }) => theme.maxMedia.mobile} {
-      padding: 10px 10px;
-    }
-
     &-left {
       display: flex;
       align-items: center;

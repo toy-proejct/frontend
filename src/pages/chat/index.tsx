@@ -179,6 +179,10 @@ const StyledChatInputForm = styled.form`
     color: white;
     font-weight: 600;
     border-radius: 20px;
+    ${({ theme }) => theme.maxMedia.tablet} {
+      padding: 0.7rem 0.5rem;
+      border-radius: 13px;
+    }
   }
 `
 
@@ -215,6 +219,9 @@ const StyleChatRoomListWrapper = styled.ul`
 
 const StyledChatWritePlaceContainer = styled.section`
   width: 50%;
+  ${({ theme }) => theme.maxMedia.tablet} {
+    width: 50%;
+  }
   border-left: 1px solid #efefef;
   display: flex;
   flex-direction: column;
@@ -227,10 +234,14 @@ const StyledChatRoomContainer = styled.section`
     text-align: center;
     padding: 0.5rem 0;
   }
+  ${({ theme }) => theme.maxMedia.tablet} {
+    width: 50%;
+  }
 `
 
 const StyledMainContainer = styled.main`
   background: rgb(249, 249, 249);
+  overflow-x: hidden;
 `
 
 const StyledMainWrapper = styled.div`
@@ -238,5 +249,16 @@ const StyledMainWrapper = styled.div`
   width: ${({ theme }) => theme.size.xLarge};
   margin: 0 auto;
   display: flex;
+  flex-wrap: nowrap;
   height: 600px;
+  ${({ theme }) => theme.maxMedia.notebook} {
+    max-width: ${({ theme }) => theme.size.large};
+  }
+  ${({ theme }) => theme.maxMedia.tablet} {
+    width: 100%;
+    justify-content: center;
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    width: ${({ theme }) => theme.size.middle};
+  }
 `

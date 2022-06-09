@@ -57,4 +57,9 @@ const StyledReviewMoreWrapper = styled.div`
 
 const StyledClassContainer = styled.section`
   padding-bottom: 4rem;
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    h2 {
+      font-size: 1.1rem;
+    }
+  }
 `

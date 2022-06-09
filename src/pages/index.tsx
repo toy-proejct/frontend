@@ -1,12 +1,12 @@
+import React from "react"
 import Head from "next/head"
 import Image from "next/image"
 import styled from "styled-components"
 import main from "public/statics/main/main.png"
 import HomeProduct from "src/components/home/HomeProduct"
 import HomeGongbang from "src/components/home/HomeGongbang"
-import Layout from "src/components/layout/app/Layout"
 import Script from "next/script"
-import { ReactElement, useEffect } from "react"
+
 export default function Home() {
   return (
     <div>
@@ -32,6 +32,24 @@ export default function Home() {
 }
 
 const StyledMainContainer = styled.main`
-  width: ${({ theme }) => theme.size.xLarge};
   margin: 0 auto;
+
+  width: ${({ theme }) => theme.size.xLarge};
+  ${({ theme }) => theme.maxMedia.notebook} {
+    max-width: ${({ theme }) => theme.size.large};
+  }
+  ${({ theme }) => theme.maxMedia.tablet} {
+    max-width: ${({ theme }) => theme.size.middle};
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    max-width: ${({ theme }) => theme.size.small};
+  }
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    max-width: ${({ theme }) => theme.size.xsmall};
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  ${({ theme }) => theme.maxMedia.minimun} {
+    width: 100%;
+  }
 `

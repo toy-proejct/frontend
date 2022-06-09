@@ -28,6 +28,10 @@ const StyledReivewList = styled.li`
   width: 29%;
   padding: 2rem 1rem;
   margin: 1rem 0;
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
   .reviewTitle {
     font-size: 0.9rem;
     color: #797979;

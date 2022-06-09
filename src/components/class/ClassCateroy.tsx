@@ -19,6 +19,12 @@ export default function ClassCateroy() {
 const StyledClassWrapper = styled.section`
   color: white;
   padding: 2rem 0;
+  ${({ theme }) => theme.maxMedia.smallMobile} {
+    h2 {
+      font-size: 1.1rem;
+    }
+    padding: 1rem 0;
+  }
 `
 
 const StyledClassListWrapper = styled.ul`

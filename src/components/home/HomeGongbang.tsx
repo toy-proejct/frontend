@@ -1,10 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import GongbangList from "../common/GongbangList"
 import gongbangData from "./data/gongbangDummy"
 import Link from "next/link"
+import throttle from "lodash/throttle"
 
 export default function HomeGongbang() {
+  const [itemNumberPerWidth, setItemNumberPerWidth] = useState<2 | 4>(4)
+  const handleResize = () => {
+    if (window.innerWidth <= 767) {
+      setItemNumberPerWidth(2)
+    } else {
+      setItemNumberPerWidth(4)
+    }
+  }
+  useEffect(() => {
+    if (window.innerWidth <= 767) {
+      setItemNumberPerWidth(2)
+    }
+    window.addEventListener("resize", throttle(handleResize, 1000))
+
+    return () => window.removeEventListener("resize", throttle(handleResize, 1000))
+  }, [])
   return (
     <StyledGongbangContainer>
       <StyledTitleWrapper>
@@ -15,7 +32,7 @@ export default function HomeGongbang() {
       </StyledTitleWrapper>
       <StyledGongBangWrapper>
         {gongbangData.map((gongbang, idx) => {
-          if (idx < 4) {
+          if (idx < itemNumberPerWidth) {
             return <GongbangList gongbang={gongbang} key={gongbang.id} />
           }
         })}
@@ -41,5 +58,8 @@ const StyledTitleWrapper = styled.div`
   a {
     color: #919191;
     text-decoration: underline;
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.7rem;
   }
 `

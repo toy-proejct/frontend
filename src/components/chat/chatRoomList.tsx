@@ -98,7 +98,7 @@ const StyledChatRoomMoreInfo = styled.ul<{ isOpendMoreInfo: boolean }>`
   }
 `
 const StyledChatRoomImgWrapper = styled.div`
-  width: 10%;
+  width: 40px;
   height: 50px;
   border-radius: 50%;
   position: relative;

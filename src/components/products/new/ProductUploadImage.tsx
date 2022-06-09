@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useState } from "react"
-import photoIcon from "public/statics/products/photoIcon.svg"
 import Image from "next/image"
 import styled from "styled-components"
 import { UploadImageType } from "src/pages/products/new/index"
@@ -61,7 +60,7 @@ export default function ProductUploadImage({
         <StyledImageListWrapper>
           <StyledImageListUploadInput>
             <label htmlFor="photo">
-              <Image src={photoIcon} width="30" height="30" />
+              <Image src="/statics/products/photoIcon.svg" width="30" height="30" />
               <p className="uploadImageTitle">사진 등록하기</p>
               <p className="uploadImageMaxText">(권장사이즈는 640 x 640 입니다.)</p>
             </label>
@@ -108,7 +107,7 @@ function UploadImageList({
   }
   return (
     <StyledImageList>
-      <Image src={src} layout="fill" objectFit="cover" alt={name} />
+      <Image src={src} layout="fill" objectFit="fill" alt={name} />
       <button onClick={clickUploadImageDeleteBtn}>X</button>
       {index === 0 && <span>대표이미지</span>}
     </StyledImageList>
@@ -137,6 +136,9 @@ const StyledImageList = styled.li`
   width: 20%;
   position: relative;
   height: 172px;
+  ${({ theme }) => theme.maxMedia.tablet} {
+    width: 33%;
+  }
   img {
     padding: 0.5rem !important;
   }
@@ -172,6 +174,9 @@ const StyledImageListUploadInput = styled.li`
   color: rgb(155, 153, 169);
   text-align: center;
   font-size: 0.8rem;
+  ${({ theme }) => theme.maxMedia.tablet} {
+    width: 33%;
+  }
   label {
     background: rgb(250, 250, 253);
     border: 1px solid rgb(230, 229, 239);

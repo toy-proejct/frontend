@@ -2,11 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import chatType from "src/types/chatType"
 
-type ChatContainerType = {
+type ChattingType = {
   chat: chatType
 }
 
-export default function ChatContainer({ chat }: ChatContainerType) {
+export default function Chatting({ chat }: ChattingType) {
   const changeDateToHours = (time: string) => {
     const date = new Date(time)
     const hours = date.getHours()

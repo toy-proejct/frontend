@@ -38,6 +38,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         </Head>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
+          <div id="root-modal"></div>
           {Component.getLayout ? (
             <Component {...pageProps} />
           ) : (

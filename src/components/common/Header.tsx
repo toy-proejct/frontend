@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux"
 import { changeModalSwitchTrue } from "src/redux/reducer/modal"
 import LoginModal from "../login/LoginModal"
 import { useSelector } from "src/util/hooks/useSelector"
+import ModalPortal from "./ModalPortal"
 
 type NavLinkType = {
   src: string
@@ -111,7 +112,11 @@ const Header: React.FC = () => {
           <a>회원가입</a>
         </div>
       </div>
-      {modalSwitch && <LoginModal />}
+      {modalSwitch && (
+        <ModalPortal>
+          <LoginModal />
+        </ModalPortal>
+      )}
     </HeaderContainer>
   )
 }

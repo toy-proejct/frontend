@@ -5,7 +5,7 @@ type Content = {
   time: string
 }
 
-type chatType = {
+type ChatType = {
   id: number
   title: string
   lastChat: string
@@ -15,4 +15,4 @@ type chatType = {
   notReadCount: number
 }
 
-export default chatType
+export default ChatType

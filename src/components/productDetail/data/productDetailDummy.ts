@@ -7,13 +7,15 @@ const ProductDetailData = {
   createdAt: "2022-05-22 11:39:00",
   productStatus: "중고상품",
   image: [
-    { id: 0, imageAddress: "/statics/productExample.jpg" },
-    { id: 1, imageAddress: "/statics/productExample.jpg" },
-    { id: 2, imageAddress: "/statics/productExample.jpg" },
-    { id: 3, imageAddress: "/statics/productExample.jpg" },
+    { id: 0, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
+    { id: 1, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
+    { id: 2, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
+    { id: 3, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
   ],
   quantity: 3,
   likedAt: 15,
+  viewCount: 1504,
+  chatCount: 3,
 }
 
 export default ProductDetailData

@@ -5,9 +5,11 @@ type ProductDetailType = {
   detail: string
   createdAt: string
   productStatus: string
-  image: { id: number; imageAddress: string }[]
+  image: { id: number; imageAddress: string; imageName: string }[]
   quantity: number
   likedAt: number
+  viewCount: number
+  chatCount: number
 }
 
 export default ProductDetailType

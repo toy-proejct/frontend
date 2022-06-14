@@ -1,7 +1,6 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import handleCreateAt from "src/utils/handleCreateAt"
 import styled from "styled-components"
-import Image from "next/image"
 import Thumbnails from "../common/Thumbnails"
 
 type ProductDetailTitleType = {
@@ -27,8 +26,31 @@ export default function ProductDetailTitle({
   viewCount,
   chatCount,
 }: ProductDetailTitleType) {
+  const [isActivedLikeBtn, setIsActivedLikeBtn] = useState(false)
   const changedCreatedAt = handleCreateAt(createdAt)
+  const calculatedLikedAt = isActivedLikeBtn ? likedAt + 1 : likedAt
+  const onClickLikeBtn = () => {
+    setIsActivedLikeBtn(!isActivedLikeBtn)
+  }
 
+  const handleLikeCount = () => {
+    console.log("Like Count  + 1")
+  }
+
+  const handleMinusLikeCount = () => {
+    console.log("Like Count - 1")
+  }
+
+  useEffect(() => {
+    return () => {
+      if (isActivedLikeBtn) {
+        handleLikeCount()
+      }
+      if (!isActivedLikeBtn) {
+        handleMinusLikeCount()
+      }
+    }
+  })
   return (
     <StyledDetailTitleContainer>
       <Thumbnails image={image} />
@@ -36,7 +58,7 @@ export default function ProductDetailTitle({
         <h2>{title}</h2>
         <p className="detailTitleCost">{cost.toLocaleString()}원</p>
         <div className="detailTitleReportWrapper">
-          <span>💖{likedAt} |</span>
+          <span>💖{calculatedLikedAt} |</span>
           <span> 🕛{changedCreatedAt} |</span>
           <span> 수량: {quantity} |</span>
           <span> 조회: {viewCount} |</span>
@@ -56,13 +78,18 @@ export default function ProductDetailTitle({
           <span>교환불가능</span>
         </div>
         <div className="detailChatBtnWrapper">
-          <button className="detailLikeBtn">관심{likedAt}</button>
+          <StyledLikeBtn onClick={onClickLikeBtn} active={isActivedLikeBtn}>
+            관심{calculatedLikedAt}
+          </StyledLikeBtn>
           <button className="detailChatBtn">연락하기</button>
         </div>
       </div>
     </StyledDetailTitleContainer>
   )
 }
+const StyledLikeBtn = styled.button<{ active: boolean }>`
+  background: ${({ active }) => (active ? "rgb(51,51,51)" : "rgb(204, 204, 204)")};
+`
 
 const StyledDetailTitleContainer = styled.section`
   display: grid;
@@ -125,9 +152,6 @@ const StyledDetailTitleContainer = styled.section`
       color: #ffffff;
       font-weight: bold;
       margin-right: 20px;
-    }
-    .detailLikeBtn {
-      background: rgb(204, 204, 204);
     }
     .detailChatBtn {
       background: rgb(53, 202, 244);

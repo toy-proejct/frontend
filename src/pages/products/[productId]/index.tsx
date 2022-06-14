@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import styled from "styled-components"
 import ProductDetailData from "src/components/productDetail/data/productDetailDummy"
 import ProductDetailType from "src/types/productDetailType"
-import Link from "next/link"
 import ProductDetailTitle from "src/components/productDetail/ProductDetailTitle"
 import ProductDetailInfo from "src/components/productDetail/ProductDetailInfo"
 import { UserProfile } from "src/components/common/UserProfile"
@@ -24,6 +23,35 @@ export default function ProductId() {
   } = product
   const router = useRouter()
   const { productId } = router.query
+
+  const handleAddViewCount = (id: string) => {
+    const isExistedVistedSession = sessionStorage.getItem("recentlyVisitedProducts")
+
+    if (isExistedVistedSession) {
+      const isExistedCurrentProductId = sessionStorage
+        .getItem("recentlyVisitedProducts")!
+        .split(",")
+        .includes(id)
+
+      if (!isExistedCurrentProductId) {
+        const sessionVistedProduct = JSON.parse(sessionStorage.getItem("recentlyVisitedProducts")!)
+        sessionVistedProduct.push(id)
+        sessionStorage.setItem("recentlyVisitedProducts", JSON.stringify(sessionVistedProduct))
+        setProduct({ ...product, viewCount: product.viewCount + 1 })
+      }
+    }
+
+    if (!isExistedVistedSession) {
+      sessionStorage.setItem("recentlyVisitedProducts", JSON.stringify([productId as string]))
+      setProduct({ ...product, viewCount: product.viewCount + 1 })
+    }
+  }
+
+  useEffect(() => {
+    if (router.isReady) {
+      handleAddViewCount(productId as string)
+    }
+  }, [router.isReady])
 
   return (
     <StyledDetailContainer>

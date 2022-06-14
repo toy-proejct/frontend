@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "next/image"
+import userDefaultImage from "public/statics/user/user_default.webp"
 
 type ThumbnailsType = {
   image: { id: number; imageAddress: string; imageName: string }[]
@@ -10,9 +11,16 @@ type ThumbnailListType = {
   imageAddress: string
   imageName: string
   id: number
+  hoveredImg: number
+  onMouseEnterThumbnailList: (id: number) => void
 }
 
 export default function Thumbnails({ image }: ThumbnailsType) {
+  const [hoveredImg, setHoveredImg] = useState(0)
+
+  const onMouseEnterThumbnailList = (id: number) => {
+    setHoveredImg(id)
+  }
   return (
     <StyledThumbnailContainer>
       <ThumbnailImgListWrapper>
@@ -22,19 +30,34 @@ export default function Thumbnails({ image }: ThumbnailsType) {
             imageAddress={item.imageAddress}
             imageName={item.imageName}
             key={item.id}
+            onMouseEnterThumbnailList={onMouseEnterThumbnailList}
+            hoveredImg={hoveredImg}
           />
         ))}
       </ThumbnailImgListWrapper>
       <div>
-        <Image src={image[0].imageAddress} alt={image[0].imageName} layout="fill" />
+        <Image
+          src={image[hoveredImg].imageAddress}
+          alt={image[hoveredImg].imageName}
+          layout="fill"
+        />
       </div>
     </StyledThumbnailContainer>
   )
 }
 
-function ThumbnailImgList({ id, imageAddress, imageName }: ThumbnailListType) {
+function ThumbnailImgList({
+  id,
+  imageAddress,
+  imageName,
+  onMouseEnterThumbnailList,
+  hoveredImg,
+}: ThumbnailListType) {
+  const mouseEnterThumbnailList = () => {
+    onMouseEnterThumbnailList(id)
+  }
   return (
-    <StyledThumbnailImgList>
+    <StyledThumbnailImgList onMouseEnter={mouseEnterThumbnailList} active={id === hoveredImg}>
       <button>
         <Image src={imageAddress} alt={imageName} layout="fill" />
       </button>
@@ -50,12 +73,13 @@ const ThumbnailImgListWrapper = styled.ul`
   }
 `
 
-const StyledThumbnailImgList = styled.li`
+const StyledThumbnailImgList = styled.li<{ active: boolean }>`
   width: 56px;
   height: 56px;
   margin-bottom: 3px;
   position: relative;
   border-radius: 5px;
+  border: ${({ active }) => active && "2px solid rgb(53, 197, 240) !important"};
   &:hover {
     border: 2px solid rgb(53, 197, 240) !important;
   }

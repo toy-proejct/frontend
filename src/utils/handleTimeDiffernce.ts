@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 
-const handleCreateAt = (createdAt: string) => {
+const handleTimeDifference = (createdAt: string) => {
   dayjs().format()
   const today = dayjs()
 
@@ -33,4 +33,4 @@ const handleCreateAt = (createdAt: string) => {
   return `${diffSecond}초 전`
 }
 
-export default handleCreateAt
+export default handleTimeDifference

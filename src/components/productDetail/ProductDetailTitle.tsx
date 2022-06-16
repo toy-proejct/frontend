@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import handleCreateAt from "src/utils/handleCreateAt"
 import styled from "styled-components"
@@ -28,6 +29,7 @@ export default function ProductDetailTitle({
 }: ProductDetailTitleType) {
   const [isActivedLikeBtn, setIsActivedLikeBtn] = useState(false)
   const changedCreatedAt = handleCreateAt(createdAt)
+  const router = useRouter()
   const calculatedLikedAt = isActivedLikeBtn ? likedAt + 1 : likedAt
   const onClickLikeBtn = () => {
     setIsActivedLikeBtn(!isActivedLikeBtn)
@@ -41,6 +43,20 @@ export default function ProductDetailTitle({
     console.log("Like Count - 1")
   }
 
+  const onClickChatBtn = () => {
+    router.push({
+      pathname: "/chat",
+      query: {
+        userId: "123123123",
+        pid: "0",
+        image: image[0].imageAddress,
+        pname: title,
+        cost,
+        userNickname: "혜빈짱123",
+      },
+    })
+  }
+
   useEffect(() => {
     return () => {
       if (isActivedLikeBtn) {
@@ -51,6 +67,7 @@ export default function ProductDetailTitle({
       }
     }
   })
+
   return (
     <StyledDetailTitleContainer>
       <Thumbnails image={image} />
@@ -81,7 +98,9 @@ export default function ProductDetailTitle({
           <StyledLikeBtn onClick={onClickLikeBtn} active={isActivedLikeBtn}>
             관심{calculatedLikedAt}
           </StyledLikeBtn>
-          <button className="detailChatBtn">연락하기</button>
+          <button className="detailChatBtn" onClick={onClickChatBtn}>
+            연락하기
+          </button>
         </div>
       </div>
     </StyledDetailTitleContainer>

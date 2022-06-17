@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
-import handleCreateAt from "src/utils/handleCreateAt"
+import handleCreateAt from "src/utils/handleTimeDiffernce"
 import styled from "styled-components"
 import Thumbnails from "../common/Thumbnails"
 
@@ -28,9 +28,10 @@ export default function ProductDetailTitle({
   chatCount,
 }: ProductDetailTitleType) {
   const [isActivedLikeBtn, setIsActivedLikeBtn] = useState(false)
-  const changedCreatedAt = handleCreateAt(createdAt)
+  const changedCreatedAt = handleTimeDiffernce(createdAt)
   const router = useRouter()
   const calculatedLikedAt = isActivedLikeBtn ? likedAt + 1 : likedAt
+
   const onClickLikeBtn = () => {
     setIsActivedLikeBtn(!isActivedLikeBtn)
   }
@@ -66,7 +67,7 @@ export default function ProductDetailTitle({
         handleMinusLikeCount()
       }
     }
-  })
+  }, [])
 
   return (
     <StyledDetailTitleContainer>

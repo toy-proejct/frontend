@@ -11,6 +11,7 @@ const ProductDetailData = {
     { id: 1, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
     { id: 2, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
     { id: 3, imageAddress: "/statics/productExample.jpg", imageName: "hello" },
+    { id: 4, imageAddress: "/statics/user/user_default.webp", imageName: "hello" },
   ],
   quantity: 3,
   likedAt: 15,

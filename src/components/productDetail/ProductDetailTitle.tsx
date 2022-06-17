@@ -1,7 +1,13 @@
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
-import handleCreateAt from "src/utils/handleTimeDiffernce"
+import { useDispatch } from "react-redux"
+import { useSelector } from "src/hooks/useSelector"
+import { onClickReportModalOpenBtn, onClickReportExitBtn } from "src/redux/reducer/modal"
+import handleTimeDiffernce from "src/utils/handleTimeDiffernce"
 import styled from "styled-components"
+import Modal from "../common/Modal"
+import Portal from "../common/Portal"
+import Report from "../common/Report"
 import Thumbnails from "../common/Thumbnails"
 
 type ProductDetailTitleType = {
@@ -28,9 +34,17 @@ export default function ProductDetailTitle({
   chatCount,
 }: ProductDetailTitleType) {
   const [isActivedLikeBtn, setIsActivedLikeBtn] = useState(false)
-  const changedCreatedAt = handleTimeDiffernce(createdAt)
+  const isOpenReport = useSelector(({ modal }) => modal.isOpenReport)
+
   const router = useRouter()
+  const dispatch = useDispatch()
+
+  const changedCreatedAt = handleTimeDiffernce(createdAt)
   const calculatedLikedAt = isActivedLikeBtn ? likedAt + 1 : likedAt
+
+  const clickReportOpenBtn = () => {
+    dispatch(onClickReportModalOpenBtn())
+  }
 
   const onClickLikeBtn = () => {
     setIsActivedLikeBtn(!isActivedLikeBtn)
@@ -81,7 +95,16 @@ export default function ProductDetailTitle({
           <span> 수량: {quantity} |</span>
           <span> 조회: {viewCount} |</span>
           <span> 채팅: {chatCount}</span>
-          <button className="detailTitleReportBtn">❗신고하기</button>
+          <button className="detailTitleReportBtn" onClick={clickReportOpenBtn}>
+            ❗신고하기
+          </button>
+          {isOpenReport && (
+            <Portal>
+              <Modal onClickExitBtn={onClickReportExitBtn}>
+                <Report />
+              </Modal>
+            </Portal>
+          )}
         </div>
         <div className="detailTitleTextSubWrapper">
           <span className="detailTitleTextCategory">-상품상태:</span>

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import profile from "public/statics/chat/profileExample.png"
 import chatType from "src/types/chatType"
 import Image from "next/image"
+import handleTimeDifference from "src/utils/handleTimeDiffernce"
 
 type ChatRoomInfoListType = {
   chat: chatType
@@ -16,11 +17,12 @@ export default function ChatRoomInfoList({
   active,
 }: ChatRoomInfoListType) {
   const [isOpendMoreInfo, setIsOpendMoreInfo] = useState(false)
-  const { title, lastChat, modifiedAt, notReadCount, id } = chat
+  const { title, lastChat, notReadCount, id } = chat
+  const modifiedAt = handleTimeDifference(chat.modifiedAt)
   const handleMoreInfo = (event: React.MouseEvent) => {
     if (event.type === "mouseleave") {
       setIsOpendMoreInfo(false)
-      return
+      return false
     }
     setIsOpendMoreInfo(!isOpendMoreInfo)
   }

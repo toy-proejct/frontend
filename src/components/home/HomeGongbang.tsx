@@ -1,43 +1,29 @@
 import React from "react"
 import styled from "styled-components"
-import GongbangList from "../common/GongbangList"
-import gongbangData from "./data/gongbangDummy"
 import Link from "next/link"
-import useResize from "src/hooks/useResize"
+import { HomeGongbangeGrid } from "./HomeGongbangGrid"
 
 export default function HomeGongbang() {
-  const itemNumberPerWidth = useResize(4, 2, 767, 1000)
-
   return (
-    <StyledGongbangContainer>
-      <StyledTitleWrapper>
-        <h2>공방리스트</h2>
+    <HomeGongbangContainer>
+      <HomeGongbangHeader>
+        <HomeGongbangTitle>공방리스트</HomeGongbangTitle>
         <Link href="/craftmap">
           <a>전체보기</a>
         </Link>
-      </StyledTitleWrapper>
-      <StyledGongBangWrapper>
-        {gongbangData.map((gongbang, idx) => {
-          if (idx < itemNumberPerWidth) {
-            return <GongbangList gongbang={gongbang} key={gongbang.id} />
-          }
-        })}
-      </StyledGongBangWrapper>
-    </StyledGongbangContainer>
+      </HomeGongbangHeader>
+      <HomeGongbangeGrid />
+    </HomeGongbangContainer>
   )
 }
 
-const StyledGongbangContainer = styled.section`
+const HomeGongbangContainer = styled.section`
   padding-bottom: 4rem;
 `
 
-const StyledGongBangWrapper = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
+const HomeGongbangTitle = styled.h2``
 
-const StyledTitleWrapper = styled.div`
+const HomeGongbangHeader = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: end;

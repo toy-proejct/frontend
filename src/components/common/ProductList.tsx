@@ -4,6 +4,7 @@ import { ProductType } from "src/types/productType"
 import Link from "next/link"
 import Image from "next/image"
 import dayjs from "dayjs"
+import { Flex } from "../shared/Flex"
 
 type ProductListType = {
   product: ProductType
@@ -46,42 +47,36 @@ export default function ProductList({ product }: ProductListType) {
   const { title, cost, image, likedAt } = product
   const createdAt = handleCreateAt(product.createdAt)
   return (
-    <StyledListWrapper>
+    <ProductListContainer>
       <Link href={`/products/${product.boardId}`} passHref>
-        <StyledListLink>
-          <StyledImageWrapper>
-            <Image
-              src={image}
-              layout="fill"
-              objectFit="fill"
-              style={{ borderRadius: 4 }}
-              alt={title}
-            />
-          </StyledImageWrapper>
+        <StyledLink>
+          <ProductListImg>
+            <Image src={image} layout="fill" objectFit="fill" alt={title} />
+          </ProductListImg>
           <div>
-            <StyledListTitle>{title}</StyledListTitle>
-            <StyledProductDetailWrapper>
-              <StyledProductCostWrapper>
-                <p>{cost.toLocaleString()}원</p>
-                <StyledCreatedAt>{createdAt}</StyledCreatedAt>
-              </StyledProductCostWrapper>
-              <StyledProductHeartWrapper>
-                <p>💖 {likedAt}</p>
-              </StyledProductHeartWrapper>
-            </StyledProductDetailWrapper>
+            <ProductListTitle>{title}</ProductListTitle>
+            <ProductListCost>{cost.toLocaleString()}원</ProductListCost>
+            <Flex axis="horizontal" space="evenly">
+              <ProductListCreatedAt>{createdAt}</ProductListCreatedAt>
+              <ProductListHeart>💖 {likedAt}</ProductListHeart>
+            </Flex>
           </div>
-        </StyledListLink>
+        </StyledLink>
       </Link>
-    </StyledListWrapper>
+    </ProductListContainer>
   )
 }
 
-const StyledListLink = styled.a`
+const ProductListContainer = styled.li`
+  list-style: none;
+  padding: 1rem 10px;
+`
+
+const StyledLink = styled.a`
   color: #343434;
   cursor: pointer;
 `
-
-const StyledImageWrapper = styled.div`
+const ProductListImg = styled.div`
   background: grey;
   width: 100%;
   height: 150px;
@@ -90,20 +85,20 @@ const StyledImageWrapper = styled.div`
   img {
     transform: scale(1);
     transition: 0.3s;
-    ${StyledListLink}:hover & {
+    ${StyledLink}:hover & {
       transform: scale(1.05);
     }
   }
 `
 
-const StyledListTitle = styled.p`
+const ProductListTitle = styled.p`
   font-size: 1rem;
   padding-top: 0.3rem;
   width: 95%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  ${StyledListLink}:hover & {
+  ${StyledLink}:hover & {
     text-decoration: underline;
     text-underline-position: under;
     text-decoration-color: #343434;
@@ -113,38 +108,27 @@ const StyledListTitle = styled.p`
   }
 `
 
-const StyledListWrapper = styled.li`
-  width: 25%;
-  padding: 1rem 10px;
-  ${({ theme }) => theme.maxMedia.mobile} {
-    width: 50%;
-  }
-`
-
-const StyledProductCostWrapper = styled.div`
+const ProductListCost = styled.div`
   font-size: 0.9rem;
   ${({ theme }) => theme.maxMedia.mobile} {
     font-size: 0.8rem;
   }
 `
-const StyledProductHeartWrapper = styled.div`
+
+const ProductListCreatedAt = styled.p`
+  color: #9c9c9c;
+  padding-top: 0.1rem;
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.8rem;
+  }
+`
+
+const ProductListHeart = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
   font-size: 0.7rem;
   ${({ theme }) => theme.maxMedia.mobile} {
     font-size: 0.6rem;
-  }
-`
-const StyledProductDetailWrapper = styled.div`
-  display: flex;
-  position: relative;
-`
-
-const StyledCreatedAt = styled.p`
-  color: #9c9c9c;
-  padding-top: 0.1rem;
-  ${({ theme }) => theme.maxMedia.mobile} {
-    font-size: 0.8rem;
   }
 `

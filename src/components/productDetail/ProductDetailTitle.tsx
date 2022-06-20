@@ -8,7 +8,7 @@ import styled from "styled-components"
 import Modal from "../common/Modal"
 import Portal from "../common/Portal"
 import Report from "../common/Report"
-import Thumbnails from "../common/Thumbnails"
+import Thumbnails from "./Thumbnails"
 
 type ProductDetailTitleType = {
   title: string

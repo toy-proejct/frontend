@@ -3,16 +3,21 @@ import React, { useEffect, useState } from "react"
 import { Center } from "../shared/Center"
 import MyPageNavbar from "./MyPageNavbar"
 
-const MyPageHeader = () => {
+const MyPageNav = () => {
   return (
-    <MyPageHeaderContainer>
+    <MyPageNavContainer>
       <Center variant="regular">
         <MyPageNavbar />
       </Center>
-    </MyPageHeaderContainer>
+    </MyPageNavContainer>
   )
 }
 
-const MyPageHeaderContainer = styled.div``
+const MyPageNavContainer = styled.div`
+  border-bottom: 1px solid #ededed;
+  ${({ theme }) => theme.minMedia.mobile} {
+    border-top: 1px solid #ededed;
+  }
+`
 
-export default MyPageHeader
+export default MyPageNav

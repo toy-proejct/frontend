@@ -145,7 +145,6 @@ const StyledChatRoomContainer = styled.section`
 
 const StyledMainContainer = styled.main`
   background: rgb(249, 249, 249);
-  padding-top: 95px;
   overflow-x: hidden;
 `
 

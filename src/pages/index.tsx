@@ -37,7 +37,6 @@ export default function Home() {
 const Section = styled(Center).attrs({ variant: "xwide" })`
   position: relative;
   height: 400px;
-  margin-top: 75px;
 `
 
 const HomeContainer = styled.main`

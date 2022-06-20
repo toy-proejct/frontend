@@ -30,11 +30,9 @@ const Header: React.FC = () => {
 }
 
 const HeaderContainer = styled.div`
-  position: fixed;
+  position: sticky;
   background: white;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 10;
   border-bottom: 1px solid #ededed;
   padding: 10px 0;

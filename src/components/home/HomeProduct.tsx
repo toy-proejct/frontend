@@ -7,7 +7,7 @@ import HomeProductGrid from "./HomeProductGrid"
 export default function HomeProduct() {
   return (
     <HomeProductContainer>
-      <HomeProductHeader space="evenly" axis="horizontal" alignment="center">
+      <HomeProductHeader>
         <HomeProductTitle>최신 상품</HomeProductTitle>
         <Link href="/products" passHref>
           <LinkText>전체보기</LinkText>

@@ -37,6 +37,7 @@ const HeaderContainer = styled.div`
   right: 0;
   z-index: 10;
   border-bottom: 1px solid #ededed;
+  padding: 10px 0;
 `
 const HeaderCenter = styled(Center).attrs({ variant: "xwide" })`
   ${({ theme }) => theme.maxMedia.notebook} {

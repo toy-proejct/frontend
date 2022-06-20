@@ -1,54 +1,37 @@
 import Link from "next/link"
 import React from "react"
 import styled from "styled-components"
-import ProductList from "../common/ProductList"
-import ProductData from "./data/productDummy"
-import useResize from "src/hooks/useResize"
+import { Flex } from "../shared/Flex"
+import HomeProductGrid from "./HomeProductGrid"
 
 export default function HomeProduct() {
-  const itemNumberPerWidth = useResize(8, 4, 767, 1000)
-
   return (
-    <StyledContainer>
-      <StyledTitleWrapper>
-        <h2>최신 상품</h2>
+    <HomeProductContainer>
+      <HomeProductHeader space="evenly" axis="horizontal" alignment="center">
+        <HomeProductTitle>최신 상품</HomeProductTitle>
         <Link href="/products" passHref>
-          <StyledTitleLink>전체보기</StyledTitleLink>
+          <LinkText>전체보기</LinkText>
         </Link>
-      </StyledTitleWrapper>
-      <StyledContentWrapper>
-        {ProductData.map((product, idx) => {
-          if (idx < itemNumberPerWidth) {
-            return <ProductList product={product} key={product.boardId} />
-          }
-        })}
-      </StyledContentWrapper>
-    </StyledContainer>
+      </HomeProductHeader>
+      <HomeProductGrid />
+    </HomeProductContainer>
   )
 }
 
-const StyledContainer = styled.section`
+const HomeProductContainer = styled.section`
   padding: 2rem 0;
 `
 
-const StyledTitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  ${({ theme }) => theme.maxMedia.mobile} {
-    font-size: 0.7rem;
-  }
-`
+const HomeProductHeader = styled(Flex).attrs({
+  space: "evenly",
+  axis: "horizontal",
+  alignment: "center",
+})``
 
-const StyledTitleLink = styled.a`
+const HomeProductTitle = styled.h2``
+
+const LinkText = styled.a`
   color: #919191;
   text-decoration: underline;
   cursor: pointer;
-`
-
-const StyledContentWrapper = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem 0;
-  margin-left: -8px;
 `

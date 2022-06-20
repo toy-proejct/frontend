@@ -8,9 +8,9 @@ export default function HomeProduct() {
   return (
     <HomeProductContainer>
       <HomeProductHeader>
-        <HomeProductTitle>최신 상품</HomeProductTitle>
-        <Link href="/products" passHref>
-          <LinkText>전체보기</LinkText>
+        <h2>최신 상품</h2>
+        <Link href="/products">
+          <a>전체보기</a>
         </Link>
       </HomeProductHeader>
       <HomeProductGrid />
@@ -26,12 +26,12 @@ const HomeProductHeader = styled(Flex).attrs({
   space: "evenly",
   axis: "horizontal",
   alignment: "center",
-})``
-
-const HomeProductTitle = styled.h2``
-
-const LinkText = styled.a`
-  color: #919191;
-  text-decoration: underline;
-  cursor: pointer;
+})`
+  a {
+    color: #919191;
+    text-decoration: underline;
+  }
+  ${({ theme }) => theme.maxMedia.mobile} {
+    font-size: 0.7rem;
+  }
 `

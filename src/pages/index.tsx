@@ -7,7 +7,6 @@ import HomeGongbang from "src/components/home/HomeGongbang"
 import Script from "next/script"
 import envs from "src/config/dotenv"
 import SEO from "src/components/shared/SEO"
-import { Center } from "src/components/shared/Center"
 
 export default function Home() {
   return (
@@ -24,9 +23,9 @@ export default function Home() {
         image=""
       />
       <HomeContainer>
-        <Section>
-          <Image src={main} layout="fill" objectFit="fill" alt="main image" priority />
-        </Section>
+        <HomeImgWrapper>
+          <Image src={main} layout="fill" objectFit="fill" alt="main" priority />
+        </HomeImgWrapper>
         <HomeProduct />
         <HomeGongbang />
       </HomeContainer>
@@ -34,9 +33,10 @@ export default function Home() {
   )
 }
 
-const Section = styled(Center).attrs({ variant: "xwide" })`
+const HomeImgWrapper = styled.div`
   position: relative;
   height: 400px;
+  width: 100%;
 `
 
 const HomeContainer = styled.main`

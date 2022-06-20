@@ -69,7 +69,6 @@ export default function ProductList({ product }: ProductListType) {
 
 const ProductListContainer = styled.li`
   list-style: none;
-  padding: 1rem 10px;
 `
 
 const StyledLink = styled.a`

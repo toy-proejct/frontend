@@ -1,5 +1,0 @@
-import React from "react"
-import styled from "styled-components"
-import Image from "next/image"
-import GongbangType from "src/types/gongbangType"
-import Link from "next/link"

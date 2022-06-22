@@ -10,10 +10,10 @@ type GongbangListType = {
   gongbang: GongbangType
 }
 
-export function HomeGongbangeGrid() {
+export default function HomeGongbangGrid() {
   return (
     <HomeGongbangGridContainer>
-      {gongbangData.map((gongbang, idx) => {
+      {gongbangData.map((gongbang) => {
         return <GongbangList gongbang={gongbang} key={gongbang.id} />
       })}
     </HomeGongbangGridContainer>
@@ -26,7 +26,7 @@ const HomeGongbangGridContainer = styled(Grid).attrs({
   mColumnCount: 1,
 })``
 
-export function GongbangList({ gongbang }: GongbangListType) {
+function GongbangList({ gongbang }: GongbangListType) {
   const { name, detail, mail, kakaoId, number, link, image } = gongbang
   return (
     <GongBangListWrapper>

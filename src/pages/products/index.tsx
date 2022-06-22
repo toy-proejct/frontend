@@ -8,6 +8,7 @@ import PageNation from "../../components/common/PageNation"
 import { useRouter } from "next/router"
 import sortArrItems from "../../utils/sortArrItems"
 import Link from "next/link"
+import { Grid } from "src/components/shared/Grid"
 
 export default function Products() {
   const [products, setProducts] = useState<ProductType[]>([])
@@ -187,9 +188,10 @@ const StyledProductWrapper = styled.div`
     padding-left: 1rem;
   }
 `
-const StyledContentWrapper = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
+const StyledContentWrapper = styled(Grid).attrs({
+  gap: 20,
+  colCount: 4,
+  mColumnCount: 3,
+})`
   padding: 1rem 0;
-  margin-left: -8px;
 `

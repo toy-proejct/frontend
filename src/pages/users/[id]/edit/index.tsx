@@ -15,9 +15,9 @@ const Edit = () => {
 }
 
 const EditContainer = styled.div`
-  padding: 80px 30px;
+  padding: 45px 30px 60px;
   ${({ theme }) => theme.minMedia.mobile} {
-    padding-top: 115px;
+    padding-top: 30px;
   }
 `
 const CenterAlign = styled(Center).attrs({ variant: "regular" })`

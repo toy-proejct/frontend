@@ -51,19 +51,19 @@ const StyledModalContainer = styled.section`
     width: 500px;
     padding: 3rem;
     position: relative;
-  }
-
-  .exitBtn {
-    border: none;
-    padding: 0 0.2rem;
-    font-size: 1.1rem;
-    background: white;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
+    border-radius: 12px;
   }
   .exitBtnWrapper {
     position: relative;
+    .exitBtn {
+      border: none;
+      padding: 0 0.2rem;
+      font-size: 1.1rem;
+      background: white;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 `

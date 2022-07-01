@@ -10,7 +10,7 @@ import { Center } from "../shared/Center"
 import MobileNav from "./MobileNav"
 
 const Header: React.FC = () => {
-  const modalSwitch = useSelector(({ modal }) => modal.switch)
+  const modalSwitch = useSelector(({ modal }) => modal.isLoginModal)
   return (
     <HeaderContainer>
       <HeaderCenter variant="xwide">
